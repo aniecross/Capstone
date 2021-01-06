@@ -14,8 +14,31 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
+from django.conf import settings
+from django.conf.urls.static import static
+
+from authentication.views import LoginView, LogoutView, SignUpView
+from journal.views import CreateEntryView
+from myuser.views import index_view, profile, edit_profile
+from indoorplants.views import PlantView, LibraryView, add_plant, remove_plant
+
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('', index_view, name="homepage"),
+    path('add_plant/<int:plant_id>/', add_plant, name='add_plant'),
+    path('all_plants/', LibraryView.as_view(), name='library'),
+    path('admin_site/', admin.site.urls),
+    path('edit/<str:username>/', edit_profile, name='edit_profile'),
+    path('journal_entry/', CreateEntryView.as_view(), name='new_entry'),
+    path('login/', LoginView.as_view(), name='login_page'),
+    path('logout/', LogoutView.as_view(), name='logout_page'),
+    path('plant/<int:plant_id>/', PlantView.as_view(), name='plant'),
+    # path('plant/<str:username>/<int:plant_id>/', PlantView.as_view(), name='my_plant'),
+    path('remove_plant/<int:plant_id>/', remove_plant, name='remove_plant'),
+    path('sign_up/', SignUpView.as_view(), name='sign_up'),
+    path('<str:username>/', profile, name='profile'),
 ]
+if settings.DEBUG:
+        urlpatterns += static(settings.MEDIA_URL,
+                              document_root=settings.MEDIA_ROOT)

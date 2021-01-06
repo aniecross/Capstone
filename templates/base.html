@@ -1,0 +1,54 @@
+<html lang="en">
+<head>
+    <title>Indoor Plant Tracker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {% include "bootstrap.partial" %}
+<br/>
+ <nav>
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <button><a class="nav-link text-danger" href="/">Home</a></button>
+        </li>
+        <li class="nav-item">
+            <button><a class="nav-link text-danger" href="/all_plants/">Plant Library</a></button>
+        </li>
+        {% if request.user.is_authenticated %}
+        <li class="nav-item">
+            <button><a class="nav-link text-danger" href="{% url 'profile' request.user.username %}">Account Info</a></button>
+        </li>
+        <li class="nav-item">
+            <button><a class="nav-link text-danger" href="{% url 'logout_page' %}">LOG OUT</a></button>
+        </li>
+            {% else %}
+        <li class="nav-item">    
+            <button><a class="nav-link text-danger" href="{% url 'login_page' %}">LOG IN</a></button>
+        </li>
+        <li class="nav-item">
+            <button><a class="nav-link text-danger" href="/sign_up/">Sign Up</a></button>
+        </li>
+            {% endif %}
+        <li>
+        {% if request.user.is_staff %}
+            <button><a class="nav-link text-danger" href="/admin_site/">Admin Page</a></button>
+        </li>
+        {% endif %}
+    </ul>
+</nav>
+    {% if request.user.is_authenticated %}
+    <br>
+    <h2 class="text-info">
+        Welcome {{ request.user }}  a.k.a... {{ request.user.username }}!
+    </h2>
+    {% endif %}
+    <br>
+    <br>
+</head>
+<body>
+<div class="container">
+{% block content %}
+
+{% endblock %} 
+</div>
+</body>
+
+</html>
