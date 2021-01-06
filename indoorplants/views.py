@@ -4,13 +4,15 @@ from django.shortcuts import render, reverse, HttpResponseRedirect, redirect
 from django.views.generic import View
 
 from indoorplants.models import Plant
+from journal.models import Entry
 
 # Create your views here.
 
 class PlantView(View):
     def get(self, request, plant_id):
         plant = Plant.objects.get(id=plant_id)
-        return render(request, 'plantdetail.html', {'plant': plant})
+        journal = Entry.objects.filter(plant=plant_id)
+        return render(request, 'plantdetail.html', {'plant': plant, 'journal': journal})
 
 class LibraryView(View):
     def get(self, request):
@@ -30,6 +32,6 @@ def add_plant(request, plant_id):
 
 @login_required
 def remove_plant(request, plant_id):
-    plant = Plant.objects.filter(id=plant_id)
+    plant = Plant.objects.get(id=plant_id)
     plant.delete()
     return HttpResponseRedirect(reverse('homepage'))

@@ -8,12 +8,12 @@ from indoorplants.models import Plant
 # Create your views here.
 
 def index_view(request):
-    if request.user:
+    if request.user.is_authenticated:
         my_user = MyUser.objects.filter(username=request.user.username).first()
         plants = Plant.objects.filter(owner=request.user)
     else:
         my_user = MyUser.objects.filter(username='admin').first()
-        plants = none
+        plants = ''
     return render(request, 'index.html', {'my_user': my_user, 'plants': plants})
 
 @login_required()

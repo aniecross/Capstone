@@ -32,22 +32,28 @@
 {% comment %} TODO: add box/button to edit nickname {% endcomment %}
 <h3>Name: {{plant.nickname}}</h3>
 <br/>
-<h2>My watering frequency: {{plant.watering}}</h2>
+<h4>My watering frequency: {{plant.watering}}</h4>
 {% comment %} TODO: add button to edit water frequency {% endcomment %}
 <br/>
-<h2>Next date to water:</h2>
+<h4>Next date to water:</h4>
 {% comment %} TODO: calculate next date water is due {% endcomment %}
 <br/>
 {% comment %} TODO: add button to click 'i watered plant today' that will restart the watering countdown{% endcomment %}
 <br/>
+<p>
 <h2>My Plant Journal</h2>
+<button><a class="nav-link text-danger" href="{% url 'new_entry' plant.id %}">Create Journal Entry</a></button>
+</p>
+<br/>
 {% for entry in journal %}
+<br/>
 <p>
     "{{entry.text}}"
-    <br/>
     Posted On: {{entry.created}}
 </p>
+<br/>
 {% endfor %}
+<br/>
 <div><a href="/remove_plant/{{plant.id}}/" class="btn btn-primary">Remove plant from my profile</a></div>
 
 {% endif %}
