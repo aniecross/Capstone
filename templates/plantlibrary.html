@@ -1,0 +1,19 @@
+{% extends 'base.html' %} 
+{% block content %} 
+<h1>Plant Library</h1>
+<h5>Click on a plant name to get more info!</h5>
+<br />
+
+{% for plant in library %} 
+<div class="card" style="width: 18rem;">
+  <img src="{{ plant.planttype.photo.url }}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h3 class="card-title"><strong><a href="/plant/{{plant.id}}/">{{ plant }}</a></strong></h3>
+    {% comment %} TODO: add functionality to button  {% endcomment %}
+    <a href="/add_plant/{{plant.id}}/" class="btn btn-primary">Add plant to my profile</a>
+  </div>
+</div>
+<br>
+{% endfor %}
+
+{% endblock %}

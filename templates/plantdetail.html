@@ -1,0 +1,60 @@
+{% extends 'base.html' %} 
+{% block content %} 
+{% comment %} to display plant type details {% endcomment %}
+<h1>Plant Details</h1>
+<br />
+<strong><h2>{{ plant.planttype.name }}</h2></strong>
+<div class="col-md-4">
+    <img src="{{ plant.planttype.photo.url }}" class="img-responsive" style="width: 100%; float: right; margin-right: 10px;" /> 
+</div>
+<br/>
+<h4>Sunlight Type: {{plant.planttype.sunlight_type}}</h4>
+<br/>
+<h4>Watering Frequency: {{plant.planttype.water_freq}}</h4>
+<br/>
+<h4>Soil Type: {{plant.planttype.soil_type}}</h4>
+<br/>
+<h4>Moisture Level: {{plant.planttype.moisture_level}}</h4>
+<br/>
+<h4>Common Problems: {{plant.planttype.common_problems}}</h4>
+<br/>
+<h4>Other Notes: {{plant.planttype.notes}}</h4>
+<br/>
+
+{% if plant.owner.username == 'admin' %}
+<div><a href="/add_plant/{{plant.id}}/" class="btn btn-primary">Add plant to my profile</a></div>
+{% endif %}
+
+{% comment %} if this is a personal plant display... {% endcomment %}
+{% if plant.owner.username != 'admin' %}
+<h2>My Plant</h2>
+<br/>
+{% comment %} TODO: add box/button to edit nickname {% endcomment %}
+<h3>Name: {{plant.nickname}}</h3>
+<br/>
+<h4>My watering frequency: {{plant.watering}}</h4>
+{% comment %} TODO: add button to edit water frequency {% endcomment %}
+<br/>
+<h4>Next date to water:</h4>
+{% comment %} TODO: calculate next date water is due {% endcomment %}
+<br/>
+{% comment %} TODO: add button to click 'i watered plant today' that will restart the watering countdown{% endcomment %}
+<br/>
+<p>
+<h2>My Plant Journal</h2>
+<button><a class="nav-link text-danger" href="{% url 'new_entry' plant.id %}">Create Journal Entry</a></button>
+</p>
+<br/>
+{% for entry in journal %}
+<br/>
+<p>
+    "{{entry.text}}"
+    Posted On: {{entry.created}}
+</p>
+<br/>
+{% endfor %}
+<br/>
+<div><a href="/remove_plant/{{plant.id}}/" class="btn btn-primary">Remove plant from my profile</a></div>
+
+{% endif %}
+{% endblock %}

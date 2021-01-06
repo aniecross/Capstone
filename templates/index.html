@@ -1,0 +1,32 @@
+{% extends 'base.html' %} 
+{% block content %} 
+{% comment %} TODO: find and add logo image {% endcomment %}
+<br />
+<h1>Welcome to My Plant Journal</h1>
+<br/>
+<h5>A place where you can record and track your house plants for optimal growth and health</h5>
+<br/>
+<h6>Just find your house plant from our plant library and add it to your profile</h6>
+<h6>You will be able to set a watering schedule and journal any observations you have to help you have the healthiest plants possible</h6>
+<br/>
+{% comment %} TODO: add some quote about happy health plants make for a healthier life {% endcomment %}
+<br>
+{% comment %} displays personal plants if logged in {% endcomment %}
+{% if request.user.is_authenticated %}
+<h1>My Plants</h1>
+<ul>
+    {% for plant in plants %}
+    <div class="col-md-4">
+        <strong><a href="/plant/{{plant.id}}/">{{ plant }}</a></strong>
+        <img src="{{ plant.planttype.photo.url }}" class="img-responsive" style="width: 100%; float: left; margin-right: 10px;" /> 
+    </div> 
+    
+    <br>
+    {% endfor %}
+</ul>
+<br/>
+<h3>Todays plants that need water:</h3>
+{% comment %} TODO: list of plants from schedule that need to be watered today {% endcomment %}
+{% endif %}
+
+{% endblock %}
