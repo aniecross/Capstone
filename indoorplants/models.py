@@ -19,14 +19,14 @@ class PlantType(models.Model):
         )
 
     WATER = [
-        ('D', 'check daily'),
-        ('5', '3-5 days'),
-        ('10', '7-10 days'),
-        ('21', '14-21 days'),
-        ('M', 'Monthly'),
+        ('check daily', 'check daily'),
+        ('3-5 days', '3-5 days'),
+        ('7-10 days', '7-10 days'),
+        ('14-21 days', '14-21 days'),
+        ('Monthly', 'Monthly'),
     ]
     water_freq = models.CharField(
-        max_length=2,
+        max_length=30,
         choices=WATER,
         default=None,
         blank=True,
@@ -34,8 +34,8 @@ class PlantType(models.Model):
         )
 
     SOILTYPE = [
-        ('well-draining', 'well draining'),
-        ('moisture-retaining', 'moisture retaining'),
+        ('well draining', 'well draining'),
+        ('moisture retaining', 'moisture retaining'),
     ]
     soil_type = models.CharField(
         max_length=50,
