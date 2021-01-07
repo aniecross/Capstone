@@ -11,7 +11,7 @@ from journal.models import Entry
 class PlantView(View):
     def get(self, request, plant_id):
         plant = Plant.objects.get(id=plant_id)
-        journal = Entry.objects.filter(plant=plant_id)
+        journal = Entry.objects.filter(plant=plant_id).order_by("created")[::-1]
         return render(request, 'plantdetail.html', {'plant': plant, 'journal': journal})
 
 class LibraryView(View):

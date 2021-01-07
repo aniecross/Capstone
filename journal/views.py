@@ -15,14 +15,15 @@ class CreateEntryView(LoginRequiredMixin, View):
         return render(request, "generic_form.html", {'form': form})
 
     def post(self, request, plant_id):
-        form = self.form_class(request.POST)
+        form = self.form_class(request.POST, request.FILES)
         plant = Plant.objects.get(id=plant_id)
         if form.is_valid():
             data = form.cleaned_data
             Entry.objects.create(
                 author=request.user,
                 text=data['text'],
-                plant=plant
+                plant=plant,
+                photo=data['photo']
             )
             return HttpResponseRedirect(reverse('plant', kwargs={'plant_id': plant_id}))
 
