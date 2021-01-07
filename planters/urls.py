@@ -43,8 +43,9 @@ urlpatterns = [
     path('task/edit/<int:pk>/', views.TaskEdit.as_view(), name='task_edit'),
     path('task/<int:task_id>/details/', views.task_details, name='task-detail'),
     path('add_plantmember/<int:task_id>', views.add_plantmember, name='add_plantmember'),
-    path('task/<int:pk>/remove', views.PlantMemberDeleteView.as_view(), name="remove_task"),)
+    path('task/<int:pk>/remove', views.PlantMemberDeleteView.as_view(), name='remove_task'),
 ]
+
 if settings.DEBUG:
         urlpatterns += static(settings.MEDIA_URL,
                               document_root=settings.MEDIA_ROOT)

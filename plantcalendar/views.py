@@ -6,7 +6,7 @@ from datetime import datetime, date
 from django.utils.safestring import mark_safe
 from datetime import timedelta
 import calendar
-from plantcalendar.models import PlantCalendar
+from plantcalendar.models import *
 from plantcalendar.utils import Calendar
 
 
@@ -66,47 +66,47 @@ def create_task(request):
             start_date=start_date,
             end_date=end_date
         )
-        return HttpResponseRedirect(reverse('calendarapp:calendar'))
-    return render(request, 'event.html', {'form': form})
+        return HttpResponseRedirect(reverse('plantcalendar:calendar'))
+    return render(request, 'task.html', {'form': form})
 
-class EventEdit(generic.UpdateView):
+class TaskEdit(generic.UpdateView):
     model = Event
-    fields = ['title', 'description', 'start_time', 'end_time']
-    template_name = 'event.html'
+    fields = ['plant', 'notes', 'start_date', 'end_date']
+    template_name = 'task.html'
 
-@login_required(login_url='signup')
-def event_details(request, event_id):
-    event = Event.objects.get(id=event_id)
-    eventmember = EventMember.objects.filter(event=event)
+@login_required(login_url='sign_up')
+def task_details(request, task_id):
+    task = PlantCalendar.objects.get(id=task_id)
+    plantmember = PlantMember.objects.filter(task=task)
     context = {
-        'event': event,
-        'eventmember': eventmember
+        'task': task,
+        'plantmember': plantmember
     }
-    return render(request, 'event-details.html', context)
+    return render(request, 'task-details.html', context)
 
 
-def add_eventmember(request, event_id):
-    forms = AddMemberForm()
+def add_plantmember(request, task_id):
+    forms = AddPlantForm()
     if request.method == 'POST':
-        forms = AddMemberForm(request.POST)
+        forms = AddPlantForm(request.POST)
         if forms.is_valid():
-            member = EventMember.objects.filter(event=event_id)
-            event = Event.objects.get(id=event_id)
-            if member.count() <= 9:
+            plant = PlantMember.objects.filter(task=task_id)
+            task = PlantCalendar.objects.get(id=task_id)
+            if plant.count() <= 9:
                 user = forms.cleaned_data['user']
-                EventMember.objects.create(
-                    event=event,
+                PlantMember.objects.create(
+                    task=task,
                     user=user
                 )
-                return redirect('calendarapp:calendar')
+                return redirect('plantcalendar:calendar')
             else:
                 print('--------------User limit exceed!-----------------')
     context = {
         'form': forms
     }
-    return render(request, 'add_member.html', context)
+    return render(request, 'add_plant.html', context)
 
-class EventMemberDeleteView(generic.DeleteView):
-    model = EventMember
-    template_name = 'event_delete.html'
-    success_url = reverse_lazy('calendarapp:calendar')
+class PlantMemberDeleteView(generic.DeleteView):
+    model = PlantMember
+    template_name = 'task_delete.html'
+    success_url = reverse_lazy('plantcalendar:calendar')

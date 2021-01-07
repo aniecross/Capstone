@@ -11,3 +11,8 @@ class PlantForm(ModelForm):
     super(PlantForm, self).__init__(*args, **kwargs)
     self.fields['start_date'].input_formats = ('%Y-%m-%dT%H:%M',)
     self.fields['end_date'].input_formats = ('%Y-%m-%dT%H:%M',)
+
+class AddPlantForm(forms.ModelForm):
+  class Meta:
+    model = PlantMember
+    fields = ['user']

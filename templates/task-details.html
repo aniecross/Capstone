@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Plant Details
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="clearfix">
+            <a class="btn btn-primary left" href="{% url 'plantcalendar:calendar' %}"> Calendar </a>
+            <a class="btn btn-info right mr-2" href="{% url 'plantcalendar:event_edit' event.pk %}"> Edit Task </a>
+        </div>
+        
+        <div class="clearfix">
+            <h3>Plant Name: {{ task.plant }}</h3>
+            <p>From <span style="color: gray;">{{ task.start_date }}</span> To <span style="color: gray;">{{ task.end_date }}</span></p>
+            <hr>
+            <p>{{ task.description }}</p>
+        </div>
+        <hr>
+        <div class="clearfix">
+            <h4 class="left" > Tasks for this Plant</h4>
+            <a class="btn btn-success right" href="{% url 'plantcalendar:add_plantmember' task.id %}"> Add Plant </a>
+        </div>
+        <table class="table table-bordered">
+            <thead>                  
+                <tr>
+                  <th style="width: 10px">#</th>
+                  <th>Name</th>
+                  <th>Username</th>
+                  <th>Email</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for plant in plantmember %}
+                <tr role="row">
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ plant.user.first_name }} {{ plant.user.last_name }}</td>
+                    <td>{{ plant.user.username }}</td>
+                    <td>{{ plant.user.email }}</td>
+                    <td>
+                        <a class="btn btn-danger" href="{% url 'plantcalendar:remove_task' task.id %}">Remove</a>
+                    </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+        </table>
+    </div>
+{% endblock %}
