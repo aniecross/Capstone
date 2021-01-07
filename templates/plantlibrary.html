@@ -3,17 +3,24 @@
 <h1>Plant Library</h1>
 <h5>Click on a plant name to get more info!</h5>
 <br />
-
-{% for plant in library %} 
-<div class="card" style="width: 18rem;">
-  <img src="{{ plant.planttype.photo.url }}" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h3 class="card-title"><strong><a href="/plant/{{plant.id}}/">{{ plant }}</a></strong></h3>
-    {% comment %} TODO: add functionality to button  {% endcomment %}
-    <a href="/add_plant/{{plant.id}}/" class="btn btn-primary">Add plant to my profile</a>
+<div class="row">
+  {% for plant in library %} 
+ <div class="col-sm-3" style="padding: 1rem;">
+    <div class="card border-dark mb-3"" style="margin-right: 10px; width: 15rem;">
+      <img src="{{ plant.planttype.photo.url }}" class="card-img-top" alt="...">
+      <div class="card-body text-center" style="font-size: 2rem;">
+        <h3 class="card-title"><strong><a href="/plant/{{plant.id}}/">
+          {% if plant.planttype.common_name %}
+          {{ plant.planttype.common_name }}
+          {% else %}
+          {{ plant }}
+          {% endif %}
+        </a></strong></h3>
+        <a href="/add_plant/{{plant.id}}/" class="btn btn-primary">Add plant to my profile</a>
+      </div>
+    </div>
   </div>
-</div>
-<br>
-{% endfor %}
+  {% endfor %}
+<div/>
 
 {% endblock %}
