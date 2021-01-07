@@ -28,6 +28,7 @@
 {% comment %} if this is a personal plant display... {% endcomment %}
 {% if plant.owner.username != 'admin' %}
 <h2>My Plant</h2>
+<div><a href="/edit_plant/{{plant.id}}/" class="btn btn-primary">Edit Plant Details</a></div>
 <br/>
 {% comment %} TODO: add box/button to edit nickname {% endcomment %}
 <h3>Name: {{plant.nickname}}</h3>
@@ -44,19 +45,20 @@
 <h2>My Plant Journal</h2>
 <button><a class="nav-link text-danger" href="{% url 'new_entry' plant.id %}">Create Journal Entry</a></button>
 </p>
-<br/>
 {% for entry in journal %}
-<br/>
-<p>
-    "{{entry.text}}"
-    Posted On: {{entry.created}}
-    {% if entry.photo %}
-    <div class="col-md-4">
-        <img src="{{ entry.photo.url }}" class="img-responsive" style="width: 100%; float: right; margin-right: 10px;" /> 
+<div class="card" style='width: 50%'>
+    <div class="card-title">
+        "{{entry.text}}"
+        <br>
+        Posted On: {{entry.created}}
+        {% if entry.photo %}
+        <div class="card-body">
+            <img src="{{ entry.photo.url }}" class="img-responsive" style="width: 100%; float: right; margin-right: 10px;" /> 
+        </div>
+        {% endif %}
     </div>
-    {% endif %}
-</p>
-<br/>
+</div>
+<br>
 {% endfor %}
 <br/>
 <div><a href="/remove_plant/{{plant.id}}/" class="btn btn-primary">Remove plant from my profile</a></div>
