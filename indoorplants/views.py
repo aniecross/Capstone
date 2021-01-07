@@ -18,6 +18,7 @@ class LibraryView(View):
     def get(self, request):
         library = Plant.objects.filter(owner=1)
         return render(request, 'plantlibrary.html', {'library': library})
+        
 
 @login_required
 def add_plant(request, plant_id):
