@@ -22,8 +22,9 @@ from authentication.views import LoginView, LogoutView, SignUpView
 from journal.views import CreateEntryView
 from myuser.views import index_view, profile, edit_profile
 from indoorplants.views import PlantView, LibraryView, add_plant, remove_plant
+from plantcalendar.views import views
 
-
+app_name = 'plantcalendar'
 urlpatterns = [
     path('', index_view, name="homepage"),
     path('add_plant/<int:plant_id>/', add_plant, name='add_plant'),
@@ -37,6 +38,12 @@ urlpatterns = [
     path('remove_plant/<int:plant_id>/', remove_plant, name='remove_plant'),
     path('sign_up/', SignUpView.as_view(), name='sign_up'),
     path('<str:username>/', profile, name='profile'),
+    path('calendar/', views.CalendarView.as_view(), name='calendar',
+    path('task/new/', views.create_task, name='event_new'),
+    path('task/edit/<int:pk>/', views.TaskEdit.as_view(), name='task_edit'),
+    path('task/<int:task_id>/details/', views.task_details, name='task-detail'),
+    path('add_plantmember/<int:task_id>', views.add_plantmember, name='add_plantmember'),
+    path('task/<int:pk>/remove', views.PlantMemberDeleteView.as_view(), name="remove_task"),)
 ]
 if settings.DEBUG:
         urlpatterns += static(settings.MEDIA_URL,
