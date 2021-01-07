@@ -50,6 +50,11 @@
 <p>
     "{{entry.text}}"
     Posted On: {{entry.created}}
+    {% if entry.photo %}
+    <div class="col-md-4">
+        <img src="{{ entry.photo.url }}" class="img-responsive" style="width: 100%; float: right; margin-right: 10px;" /> 
+    </div>
+    {% endif %}
 </p>
 <br/>
 {% endfor %}
