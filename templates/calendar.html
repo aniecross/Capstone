@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+
+  {% block content %}
+  {{ calendar }}
+  <a class="btn btn-primary left" href="{% url 'task_new' %}"> Create New Task </a>
+  
+  {% endblock %}
+
