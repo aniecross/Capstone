@@ -3,6 +3,7 @@ from django.urls import reverse
 from indoorplants.models import PlantType
 from myuser.models import MyUser
 
+
 # Create your models here.
 class PlantCalendar(models.Model):
     user = models.ForeignKey(MyUser, on_delete=models.CASCADE)
@@ -13,14 +14,15 @@ class PlantCalendar(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-      return f"{self.plant.name} - {self.user}"
+        return f"{self.plant.name} - {self.user}"
 
     def get_absolute_url(self):
-      return reverse('plantcalendar:task-detail',args=(self.id))
+        return reverse('calendarapp:task-detail', args=(self.id))
 
     def get_html_url(self):
-      url = reverse('plantcalendar:task-detail',args=(self))
-      return f'<a href="{url}">{self.plant.name}</a>'
+        url = reverse('calendarapp:task-detail', args=(self))
+        return f'<a href="{url}">{self.plant.name}</a>'
+
 
 class PlantMember(models.Model):
     task = models.ForeignKey(PlantCalendar, on_delete=models.CASCADE)
