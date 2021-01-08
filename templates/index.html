@@ -2,31 +2,61 @@
 {% block content %} 
 {% comment %} TODO: find and add logo image {% endcomment %}
 <br />
-<h1>Welcome to My Plant Journal</h1>
-<br/>
-<h5>A place where you can record and track your house plants for optimal growth and health</h5>
-<br/>
-<h6>Just find your house plant from our plant library and add it to your profile</h6>
-<h6>You will be able to set a watering schedule and journal any observations you have to help you have the healthiest plants possible</h6>
+<span class="d-block p-1" style="width: 90%">
+    <div class="card container d-block position-relative" style="height: 23rem; background-color: #20B2AA; boarder-color: black;">
+        <div class="overflow-visible text-center p-1" style="height: 10rem;">
+            <h1>Welcome to My Plant Journal</h1>
+                <div class="position-absolute bottom-0">
+                    <img 
+                        src="media/backgroundimages/house-plants1.png" 
+                        class="position-absolute" style="height: 18rem;" alt="...">    
+                </div>
+            <br/>
+            <div class="mx-auto" style="width: 70%;">
+            <p style="font-weight: bold; font-size: 1.5rem;">A place where you can record and track your house plants for optimal growth and health</p>
+            </div>
+            <br/>
+        </div>
+        <div class="float-right" style="width: 40%;"> 
+            <p class="text-center" style="font-weight: bold; font-size: 1rem;">
+                Just find your house plant from our plant library and add it to your profile. 
+                You will be able to set a watering schedule and journal any observations you have to 
+                help you have the healthiest plants possible after all ...
+            </p>  
+        </div>
+    </div>
+</span>
 <br/>
 {% comment %} TODO: add some quote about happy health plants make for a healthier life {% endcomment %}
 <br>
 {% comment %} displays personal plants if logged in {% endcomment %}
 {% if request.user.is_authenticated %}
+<div class="d-block">
 <h1>My Plants</h1>
-<ul>
+<div class="row">
     {% for plant in plants %}
-    <div class="col-md-4">
-        <strong><a href="/plant/{{plant.id}}/">{{ plant }}</a></strong>
-        <img src="{{ plant.planttype.photo.url }}" class="img-responsive" style="width: 100%; float: left; margin-right: 10px;" /> 
-    </div> 
-    
+    <div class="col-sm-3" style="padding: 1rem;">
+        <div class="card" style="margin-right: 10px; width: 15rem;">
+            <img src="{{ plant.planttype.photo.url }}" class="img-thumbnail card-img-top"  alt="..."/> 
+            <div class="card-body text-center" style="font-size: 2rem;">
+                <strong><a href="/plant/{{plant.id}}/">
+                    {% if plant.planttype.common_name %}
+                    {{ plant.planttype.common_name }}
+                    {% else %}
+                    {{ plant }}
+                    {% endif %}
+                </a></strong>
+            </div>
+        </div> 
+    </div>
     <br>
     {% endfor %}
-</ul>
+ </div>   
+
 <br/>
 <h3>Todays plants that need water:</h3>
 {% comment %} TODO: list of plants from schedule that need to be watered today {% endcomment %}
 {% endif %}
 
+</div>
 {% endblock %}

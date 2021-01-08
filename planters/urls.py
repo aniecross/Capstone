@@ -6,7 +6,7 @@ from django.conf.urls.static import static
 from authentication.views import LoginView, LogoutView, SignUpView
 from journal.views import CreateEntryView
 from myuser.views import index_view, profile, edit_profile
-from indoorplants.views import PlantView, LibraryView, add_plant, remove_plant
+from indoorplants.views import PlantView, LibraryView, add_plant, remove_plant, edit_plant
 
 
 urlpatterns = [
@@ -19,6 +19,7 @@ urlpatterns = [
          name='new_entry'),
     path('login/', LoginView.as_view(), name='login_page'),
     path('logout/', LogoutView.as_view(), name='logout_page'),
+    path('edit_plant/<int:plant_id>/', edit_plant, name='edit_plant'),
     path('plant/<int:plant_id>/', PlantView.as_view(), name='plant'),
     path('remove_plant/<int:plant_id>/', remove_plant, name='remove_plant'),
     path('sign_up/', SignUpView.as_view(), name='sign_up'),
