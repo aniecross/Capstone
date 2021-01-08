@@ -1,6 +1,7 @@
 {% extends 'base.html' %} 
 {% block content %} 
 {% comment %} to display plant type details {% endcomment %}
+<div class="mx-auto">
 <h1>Plant Details</h1>
 <br />
 <strong><h2>{{ plant.planttype.name }}</h2></strong>
@@ -41,6 +42,7 @@
 <br/>
 {% comment %} TODO: add button to click 'i watered plant today' that will restart the watering countdown{% endcomment %}
 <br/>
+</div>
 <p>
 <h2>My Plant Journal</h2>
 <button><a class="nav-link text-danger" href="{% url 'new_entry' plant.id %}">Create Journal Entry</a></button>
