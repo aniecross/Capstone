@@ -1,9 +1,17 @@
+# from plantcalendar import views
 from django.contrib import admin
-from django.urls import include, path
+from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 
 from authentication.views import LoginView, LogoutView, SignUpView
+from plantcalendar.views import CalendarView
+from plantcalendar.views import index
+from plantcalendar.views import create_task
+from plantcalendar.views import TaskEdit
+from plantcalendar.views import task_details
+from plantcalendar.views import add_plantmember
+from plantcalendar.views import PlantMemberDeleteView
 from journal.views import CreateEntryView
 from myuser.views import index_view, profile, edit_profile
 from indoorplants.views import PlantView, LibraryView, add_plant, remove_plant, edit_plant
@@ -11,6 +19,8 @@ from indoorplants.views import PlantView, LibraryView, add_plant, remove_plant, 
 
 urlpatterns = [
     path('', index_view, name="homepage"),
+    path('index/', index, name="index"),
+    path('calendar/', CalendarView.as_view(), name="calendar"),
     path('add_plant/<int:plant_id>/', add_plant, name='add_plant'),
     path('all_plants/', LibraryView.as_view(), name='library'),
     path('admin_site/', admin.site.urls),
@@ -24,7 +34,13 @@ urlpatterns = [
     path('remove_plant/<int:plant_id>/', remove_plant, name='remove_plant'),
     path('sign_up/', SignUpView.as_view(), name='sign_up'),
     path('<str:username>/', profile, name='profile'),
-    path('', include('plantcalendar.urls')),
+    path('task/new/', create_task, name='task_new'),
+    path('task/edit/<int:pk>/', TaskEdit.as_view(), name='task_edit'),
+    path('task/<int:task_id>/details/', task_details, name='task-detail'),
+    path('add_plantmember/<int:task_id>',
+         add_plantmember, name='add_plantmember'),
+    path('task/<int:pk>/remove',
+         PlantMemberDeleteView.as_view(), name="remove_task"),
 ]
 
 if settings.DEBUG:
