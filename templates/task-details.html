@@ -20,7 +20,7 @@ Plant Details
         <hr>
         <div class="clearfix">
             <h4 class="left" > Tasks for this Plant</h4>
-            <a class="btn btn-success right" href="{% url 'add_plantmember' task.id %}"> Add Plant </a>
+            <a class="btn btn-success right" href="{% url 'add_plantmember' task.id %}"> Add Gardener</a>
         </div>
         <table class="table table-bordered">
             <thead>                  
@@ -40,7 +40,7 @@ Plant Details
                     <td>{{ plant.user.username }}</td>
                     <td>{{ plant.user.email }}</td>
                     <td>
-                        <a class="btn btn-danger" href="{% url 'plantcalendar:remove_task' task.id %}">Remove</a>
+                        <a class="btn btn-danger" href="{% url 'remove_task' task.id %}">Remove</a>
                     </td>
                 </tr>
                 {% endfor %}

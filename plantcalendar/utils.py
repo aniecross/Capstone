@@ -15,7 +15,7 @@ class Calendar(HTMLCalendar):
         tasks_per_day = tasks.filter(start_date__day=day)
         d = ''
         for task in tasks_per_day:
-            d += f'<li> {task.name} </li>'
+            d += f'<li> {task.plant} </li>'
 
         if day != 0:
             return f"<td><span class='date'>{day}</span><ul> {d} </ul></td>"

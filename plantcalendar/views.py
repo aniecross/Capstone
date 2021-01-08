@@ -115,7 +115,7 @@ def add_plantmember(request, task_id):
                     task=task,
                     user=user
                 )
-                return redirect('calendarapp:calendar')
+                return redirect('calendar')
             else:
                 print('--------------User limit exceed!-----------------')
     context = {
