@@ -50,7 +50,14 @@
                     {% else %}
                     {{ plant }}
                     {% endif %}
+                    <br>
                 </a></strong>
+                <strong>
+                    {% if plant.nickname %}
+                    {{ plant.nickname }}
+                    {% endif %}
+                    <br>
+                </strong>
             </div>
         </div> 
     </div>

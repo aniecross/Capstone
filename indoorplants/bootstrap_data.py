@@ -327,7 +327,6 @@ def generate_data_plant():
     'Phalaenopsis spp',
     'Ficus elastic',
     'Kalanchoe',
-    'Dracaena Marginata',
     ]
   for plant in plant_list:
       try:
