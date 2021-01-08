@@ -47,7 +47,7 @@
 </p>
 {% for entry in journal %}
 <div class="card" style='width: 50%'>
-    <div class="card-title">
+    <div class="card-title"> <div><a href="/remove_entry/{{entry.id}}/" class="btn btn-danger" style="float: right">X</a></div>
         "{{entry.text}}"
         <br>
         Posted On: {{entry.created}}

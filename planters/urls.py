@@ -19,7 +19,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from authentication.views import LoginView, LogoutView, SignUpView
-from journal.views import CreateEntryView
+from journal.views import CreateEntryView, remove_entry
 from myuser.views import index_view, profile, edit_profile
 from indoorplants.views import PlantView, LibraryView, add_plant, remove_plant, edit_plant
 
@@ -36,6 +36,7 @@ urlpatterns = [
     path('edit_plant/<int:plant_id>/', edit_plant, name='edit_plant'),
     path('plant/<int:plant_id>/', PlantView.as_view(), name='plant'),
     path('remove_plant/<int:plant_id>/', remove_plant, name='remove_plant'),
+    path('remove_entry/<int:entry_id>/', remove_entry, name='remove_entry'),
     path('sign_up/', SignUpView.as_view(), name='sign_up'),
     path('<str:username>/', profile, name='profile'),
 ]
