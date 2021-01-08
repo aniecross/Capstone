@@ -1,7 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, reverse, HttpResponseRedirect
 from django.views.generic import View
-
+from django.contrib.auth.decorators import login_required
 from journal.forms import JournalEntry
 from journal.models import Entry
 from indoorplants.models import Plant
@@ -26,3 +26,11 @@ class CreateEntryView(LoginRequiredMixin, View):
                 photo=data['photo']
             )
             return HttpResponseRedirect(reverse('plant', kwargs={'plant_id': plant_id}))
+            
+@login_required
+def remove_entry(request, entry_id):
+    entry = Entry.objects.get(id=entry_id)
+    entry.delete()
+    return HttpResponseRedirect(reverse('homepage'))
+
+    

@@ -29,9 +29,10 @@
 <!-- <br/> -->
 {% comment %} TODO: add some quote about happy health plants make for a healthier life {% endcomment %}
 <p class="text-left" style="font-size: 1rem;">
-    <i>I grow plants for many reasons: To please my soul, to challenge the elements or to challenge my patience, for novelty or for nostalgia,<br>
+<i>I grow plants for many reasons: To please my soul, to challenge the elements or to challenge my patience, for novelty or for nostalgia,<br>
     but mostly for the joy in seeing them grow. Plants gives us oxygen for the lungs and for the soul. ~LSolegato...<i>
-</p>     
+</p> 
+ <br>
 <br>
 {% comment %} displays personal plants if logged in {% endcomment %}
 {% if request.user.is_authenticated %}
@@ -49,7 +50,14 @@
                     {% else %}
                     {{ plant }}
                     {% endif %}
+                    <br>
                 </a></strong>
+                <strong>
+                    {% if plant.nickname %}
+                    {{ plant.nickname }}
+                    {% endif %}
+                    <br>
+                </strong>
             </div>
         </div> 
     </div>

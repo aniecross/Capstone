@@ -1,4 +1,4 @@
-from django.shortcuts import render, reverse, HttpResponseRedirect, redirect
+from django.shortcuts import render, reverse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from authentication.forms import SignUpForm
@@ -6,6 +6,7 @@ from myuser.models import MyUser
 from indoorplants.models import Plant, PlantType
 from indoorplants.bootstrap_data import generate_data_planttype, generate_data_plant
 # Create your views here.
+
 
 def index_view(request):
     if not PlantType.objects.all():
@@ -19,10 +20,12 @@ def index_view(request):
         plants = ''
     return render(request, 'index.html', {'my_user': my_user, 'plants': plants})
 
+
 @login_required()
 def profile(request, username):
     my_user = MyUser.objects.filter(username=username).first()
     return render(request, 'profile.html', {'my_user': my_user})
+
 
 @login_required()
 def edit_profile(request, username):
@@ -45,6 +48,3 @@ def edit_profile(request, username):
 
     form = SignUpForm(instance=me)
     return render(request, "generic_form.html", {'form': form, 'my_user': me})
-
-
-

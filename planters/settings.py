@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'authentication',
     'myuser',
     'journal',
+    'plantcalendar',
 ]
 
 MIDDLEWARE = [

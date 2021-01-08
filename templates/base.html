@@ -1,3 +1,4 @@
+{% load static %}
 <html lang="en">
 <head>
     <title>Indoor Plant Tracker</title>
@@ -15,6 +16,9 @@
         {% if request.user.is_authenticated %}
         <li class="nav-item">
             <button><a class="nav-link text-danger" href="{% url 'profile' request.user.username %}">Account Info</a></button>
+        </li>
+        <li class="nav-item">
+            <button><a class="nav-link text-danger" href="/calendar/">Calendar</a></button>
         </li>
         <li class="nav-item">
             <button><a class="nav-link text-danger" href="{% url 'logout_page' %}">LOG OUT</a></button>
