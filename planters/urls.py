@@ -38,7 +38,10 @@ urlpatterns = [
     path('remove_plant/<int:plant_id>/', remove_plant, name='remove_plant'),
     path('sign_up/', SignUpView.as_view(), name='sign_up'),
     path('<str:username>/', profile, name='profile'),
-]
-if settings.DEBUG:
+]    
+
+if settings.DEBUG: False
         urlpatterns += static(settings.MEDIA_URL,
                               document_root=settings.MEDIA_ROOT)
+Handler404 = ‘views.custom_404’
+Handler500 = ‘views.custom_500’

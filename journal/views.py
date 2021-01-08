@@ -27,4 +27,8 @@ class CreateEntryView(LoginRequiredMixin, View):
             )
             return HttpResponseRedirect(reverse('plant', kwargs={'plant_id': plant_id}))
 
-    
+def custom_404(request):
+    return render_to_response(‘404.html’, RequestContext(request))
+
+def custom_500(request):
+    return render_to_response(‘404.html’, RequestContext(request))
