@@ -49,7 +49,8 @@ class SignUpView(View):
                 login(request, user)
                 return HttpResponseRedirect(request.GET.get('next', reverse('homepage')))
 
-def handler404(request):
-    return render(request, '404.html', status=404)
-def handler500(request):
-    return render(request, '500.html', status=500)
+def custom_404(request):
+    return render_to_response(404, RequestContext(request))
+
+def custom_500(request):
+    return render_to_response(500, RequestContext(request))
