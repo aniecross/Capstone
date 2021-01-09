@@ -1,13 +1,7 @@
 from django.contrib import admin
-from plantcalendar.models import PlantCalendar
+from plantcalendar.models import PlantCalendarEntry
 
 # Register your models here
 
-admin.site.register(PlantCalendar)
+admin.site.register(PlantCalendarEntry)
 
-# class PlantMemberAdmin(admin.ModelAdmin):
-#     model = PlantMember
-#     list_display = ['tast', 'user']
-
-
-# admin.site.register(PlantMember)
