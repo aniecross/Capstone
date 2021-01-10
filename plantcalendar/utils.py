@@ -1,9 +1,10 @@
 from datetime import datetime, timedelta, date
-from calendar import HTMLCalendar
+# from calendar import HTMLCalendar
 from .models import PlantCalendarEntry
+import calendar
 
 # (firstweekday=6)
-class Calendar(HTMLCalendar):
+class Calendar(calendar.HTMLCalendar):
     def __init__(self, year=None, month=None): 
         self.year = year
         self.month = month
@@ -16,13 +17,7 @@ class Calendar(HTMLCalendar):
         d = ''
         for entry in plants_to_water:
             d += f'<li> {entry.get_html_url} </li>'
-            if entry.plant.nickname:
-                d += f'<li> {entry.plant.nickname} </li>'
-            elif entry.plant.planttype.common_name:
-                d += f'<li> {entry.plant.planttype.common_name} </li>'
-            else:
-                d += f'<li> {entry.plant.planttype.name} </li>'
-
+            
         if day != 0:
             return f"<td><span class='date'>{day}</span><ul> {d} </ul></td>"
         return '<td></td>'

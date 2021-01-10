@@ -26,6 +26,7 @@ class CalendarView(ListView):
 
         # Instantiate our calendar class with today's year and date
         cal = Calendar(d.year, d.month)
+        cal.setfirstweekday(firstweekday=6)
 
         # Call the formatmonth method, which returns our calendar as a table
         html_cal = cal.formatmonth(withyear=True)
