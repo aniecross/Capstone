@@ -3,7 +3,11 @@
 
 <form method="post" action="" enctype="multipart/form-data">
   {% csrf_token %} {{ form.as_p }}
-  <input type="submit" value="SUBMIT" />
+  <input type="submit" value="SUBMIT" /><br/> 
+  <br>
+  {% if errors %}
+    <a>{{ errors }}</a></br>
+  {% endif %}
 </form>
 
 {% endblock %}

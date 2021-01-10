@@ -28,9 +28,8 @@
 </span>
 <!-- <br/> -->
 {% comment %} TODO: add some quote about happy health plants make for a healthier life {% endcomment %}
-<p class="text-left" style="font-size: 1rem;">
-<i>I grow plants for many reasons: To please my soul, to challenge the elements or to challenge my patience, for novelty or for nostalgia,<br>
-    but mostly for the joy in seeing them grow. Plants gives us oxygen for the lungs and for the soul. ~LSolegato...<i>
+<p class="text-center" style="font-weight: bold; font-size: 1.2rem;">
+    <i>"" Plants gives us oxygen for the lungs and for the soul. ~LSolegato ""</i>
 </p> 
  <br>
 <br>
@@ -40,7 +39,7 @@
 <h1>My Plants</h1>
 <div class="row">
     {% for plant in plants %}
-    <div class="col-sm-3" style="padding: 1rem;">
+    <div class="col-sm-3" style="padding: 1.5rem;">
         <div class="card" style="margin-right: 10px; width: 15rem;">
             <img src="{{ plant.planttype.photo.url }}" class="img-thumbnail card-img-top"  alt="..."/> 
             <div class="card-body text-center" style="font-size: 2rem;">

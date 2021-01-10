@@ -1,16 +1,19 @@
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, reverse, HttpResponseRedirect
 from django.views.generic import View
+from django.http import HttpResponse
 
 from authentication.forms import LoginForm, SignUpForm
 from myuser.models import MyUser
+
+from django.contrib import messages
 # Create your views here.
 
 class LoginView(View):
     form_class = LoginForm
     def get(self, request):
         form = self.form_class()
-        return render(request, "generic_form.html", {'form': form})
+        return render(request, "generic_form.html", {'form': form, 'errors': None})
 
     def post(self, request):
         form = self.form_class(request.POST)
@@ -21,7 +24,8 @@ class LoginView(View):
             if user:
                 login(request, user)
                 return HttpResponseRedirect(request.GET.get('next', reverse('homepage')))
-    
+            else:
+                return render(request, "generic_form.html", {'form': form, 'errors':'Invalid username or password'})
 
 class LogoutView(View):
     def get(self, request):
@@ -49,7 +53,15 @@ class SignUpView(View):
                 login(request, user)
                 return HttpResponseRedirect(request.GET.get('next', reverse('homepage')))
 
-# def handler404(request):
-#     return render(request, '404.html', status=404)
-# def handler500(request):
-#     return render(request, '500.html', status=500)
+
+def page_not_found(request, exception):
+
+    return render(request, '404.html', {})
+
+def internal_server_error(request):
+
+    return render(request, '500.html', {})
+
+def error_throwing_view(request):
+    
+    return HttpReponse(status=500)

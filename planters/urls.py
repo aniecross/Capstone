@@ -4,7 +4,7 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 
-from authentication.views import LoginView, LogoutView, SignUpView
+from authentication.views import LoginView, LogoutView, SignUpView, error_throwing_view
 from plantcalendar.views import CalendarView
 from plantcalendar.views import index
 from plantcalendar.views import create_task
@@ -34,7 +34,7 @@ urlpatterns = [
     path('remove_plant/<int:plant_id>/', remove_plant, name='remove_plant'),
     path('remove_entry/<int:entry_id>/', remove_entry, name='remove_entry'),
     path('sign_up/', SignUpView.as_view(), name='sign_up'),
-    path('<str:username>/', profile, name='profile'),
+    path('accounts/<str:username>/', profile, name='profile'),
     path('task/new/', create_task, name='task_new'),
     path('task/edit/<int:pk>/', TaskEdit.as_view(), name='task_edit'),
     path('task/<int:task_id>/details/', task_details, name='task-detail'),
@@ -42,7 +42,11 @@ urlpatterns = [
          add_plantmember, name='add_plantmember'),
     path('task/<int:pk>/remove',
          PlantMemberDeleteView.as_view(), name="remove_task"),
+      path('nope', error_throwing_view, name='500_page')
 ]
+     # https://www.youtube.com/watch?v=gsW5gYTNi34
+handler404 = 'authentication.views.page_not_found'
+handler500 = 'authentication.views.internal_server_error'
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,
