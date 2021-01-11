@@ -34,6 +34,15 @@
         <h5 style="color: black;">"Plants gives us oxygen for the lungs and for the soul."~LSolegato</h5>
       </div>
     </div>
+<<<<<<< HEAD
+</span>
+<!-- <br/> -->
+{% comment %} TODO: add some quote about happy health plants make for a healthier life {% endcomment %}
+<p class="text-center" style="font-weight: bold; font-size: 1.2rem;">
+    <i>"" Plants gives us oxygen for the lungs and for the soul. ~LSolegato ""</i>
+</p> 
+ <br>
+=======
     <a class="carousel-control-prev" href="#homepageSlides" role="button" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden" style="color: black">Previous</span>
@@ -45,6 +54,7 @@
   </div>
 </div>
 <br/>
+>>>>>>> f747a8a326af72ec7b85764c3b7c5457459f9334
 <br>
 {% comment %} displays personal plants if logged in {% endcomment %}
 {% if request.user.is_authenticated %}
@@ -52,7 +62,7 @@
 <h1>My Plants</h1>
 <div class="row">
     {% for plant in plants %}
-    <div class="col-sm-3" style="padding: 1rem;">
+    <div class="col-sm-3" style="padding: 1.5rem;">
         <div class="card" style="margin-right: 10px; width: 15rem;">
             <img src="{{ plant.planttype.photo.url }}" class="img-thumbnail card-img-top"  alt="..."/> 
             <div class="card-body text-center" style="font-size: 2rem; color: #5B9C3E;">
@@ -64,12 +74,13 @@
                     {% endif %}
                     <br>
                 </a></strong>
-                <strong>
+                <span style="font-size: large">
                     {% if plant.nickname %}
                     {{ plant.nickname }}
                     {% endif %}
+                </span>
+                    
                     <br>
-                </strong>
             </div>
         </div> 
     </div>
