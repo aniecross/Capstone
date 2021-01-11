@@ -55,8 +55,8 @@
     <div class="col-sm-3" style="padding: 1rem;">
         <div class="card" style="margin-right: 10px; width: 15rem;">
             <img src="{{ plant.planttype.photo.url }}" class="img-thumbnail card-img-top"  alt="..."/> 
-            <div class="card-body text-center" style="font-size: 2rem;">
-                <strong><a href="/plant/{{plant.id}}/">
+            <div class="card-body text-center" style="font-size: 2rem; color: #5B9C3E;">
+                <strong><a href="/plant/{{plant.id}}/" style="color: #CFB553">
                     {% if plant.planttype.common_name %}
                     {{ plant.planttype.common_name }}
                     {% else %}
@@ -78,6 +78,7 @@
  </div>   
 
   <br/>
+  <div class="float-left">
   <h3>Todays plants that need water:</h3>
   <br/>
   {% if list_for_today %}
@@ -94,6 +95,7 @@
   {% else %}
     <h4>There is nothing to water today! Enjoy the day!</h4>
   {% endif %}
+  </div>
 
 {% endif %}
 
