@@ -6,7 +6,6 @@ from django.conf.urls.static import static
 
 <<<<<<< HEAD
 from authentication.views import LoginView, LogoutView, SignUpView, error_throwing_view
-from plantcalendar.views import CalendarView
 from plantcalendar.views import index
 from plantcalendar.views import create_task
 from plantcalendar.views import TaskEdit
@@ -14,11 +13,10 @@ from plantcalendar.views import task_details
 from plantcalendar.views import add_plantmember
 from plantcalendar.views import PlantMemberDeleteView
 =======
-from authentication.views import LoginView, LogoutView, SignUpView
 from plantcalendar.views import CalendarView, CreateCalEntry
 >>>>>>> f747a8a326af72ec7b85764c3b7c5457459f9334
 from journal.views import CreateEntryView, remove_entry
-from myuser.views import index_view, profile, edit_profile
+from myuser.views import index_view, profile, edit_profile, delete_profile
 from indoorplants.views import PlantView, LibraryView, add_plant, remove_plant, edit_plant
 
 
@@ -48,7 +46,11 @@ urlpatterns = [
          add_plantmember, name='add_plantmember'),
     path('task/<int:pk>/remove',
          PlantMemberDeleteView.as_view(), name="remove_task"),
+<<<<<<< HEAD
+    path('delete_profile/<int:user_id>/', delete_profile, name='delete_profile')
+=======
       path('nope', error_throwing_view, name='500_page')
+>>>>>>> 10fdc6e67220424ff17c9d68f7af701c6f4d538f
 ]
      # https://www.youtube.com/watch?v=gsW5gYTNi34
 handler404 = 'authentication.views.page_not_found'
