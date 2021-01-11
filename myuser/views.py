@@ -48,3 +48,9 @@ def edit_profile(request, username):
 
     form = SignUpForm(instance=me)
     return render(request, "generic_form.html", {'form': form, 'my_user': me})
+
+@login_required()
+def delete_profile(request, user_id):
+    user = MyUser.objects.get(id=request.user.id)
+    user.delete()
+    return HttpResponseRedirect(reverse('homepage'))

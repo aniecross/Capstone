@@ -13,7 +13,7 @@ from plantcalendar.views import task_details
 from plantcalendar.views import add_plantmember
 from plantcalendar.views import PlantMemberDeleteView
 from journal.views import CreateEntryView, remove_entry
-from myuser.views import index_view, profile, edit_profile
+from myuser.views import index_view, profile, edit_profile, delete_profile
 from indoorplants.views import PlantView, LibraryView, add_plant, remove_plant, edit_plant
 
 
@@ -42,6 +42,7 @@ urlpatterns = [
          add_plantmember, name='add_plantmember'),
     path('task/<int:pk>/remove',
          PlantMemberDeleteView.as_view(), name="remove_task"),
+    path('delete_profile/<int:user_id>/', delete_profile, name='delete_profile')
 ]
 
 if settings.DEBUG:
