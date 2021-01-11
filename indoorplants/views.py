@@ -37,6 +37,7 @@ def edit_plant(request, plant_id):
             next_date = date + timedelta(days=days)
             notes = "Time to water edit"
             
+            
             PlantCalendarEntry.objects.create(
                 owner=plant.owner,
                 plant=plant,
