@@ -1,9 +1,18 @@
 {% extends 'base.html' %}
+<link rel="stylesheet" type="text/css" href="/plantcalendar/style.css"> 
+{% block content %}
 
-
-  {% block content %}
+  <br/>
+  <br/>
+<div class="clearfix">
+  <a class="btn btn-primary left" href="{% url 'calendar_entry' %}"> Create Calendar Entry </a>
+	<a class="btn btn-info left" href="{% url 'calendar' %}?{{ prev_month }}"> Previous Month </a>
+	<a class="btn btn-info right" href="{% url 'calendar' %}?{{ next_month }}"> Next Month </a>
+</div>
+<br/>
+<br/>
   {{ calendar }}
-  <a class="btn btn-primary left" href="{% url 'task_new' %}"> Create New Task </a>
   
-  {% endblock %}
+{% endblock %}
+
 

@@ -1,12 +1,14 @@
+from datetime import datetime
 from django.shortcuts import render, reverse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
+
 from authentication.forms import SignUpForm
 from myuser.models import MyUser
 from indoorplants.models import Plant, PlantType
 from indoorplants.bootstrap_data import generate_data_planttype, generate_data_plant
+from plantcalendar.models import PlantCalendarEntry
 # Create your views here.
-
 
 def index_view(request):
     if not PlantType.objects.all():
@@ -15,10 +17,14 @@ def index_view(request):
     if request.user.is_authenticated:
         my_user = MyUser.objects.filter(username=request.user.username).first()
         plants = Plant.objects.filter(owner=request.user)
+        today = datetime.today()
+        cal_entries = PlantCalendarEntry.objects.filter(owner=my_user)
+        entry_list = cal_entries.filter(entry_date=today)
     else:
         my_user = MyUser.objects.filter(username='admin').first()
         plants = ''
-    return render(request, 'index.html', {'my_user': my_user, 'plants': plants})
+        entry_list = None
+    return render(request, 'index.html', {'my_user': my_user, 'plants': plants, 'list_for_today': entry_list})
 
 
 @login_required()
