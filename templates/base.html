@@ -10,9 +10,10 @@
 <div class="float-left navbar-expand-lg">
     <div class="d-flex align-items-start">
         <div class="nav flex-column nav-tabs me-3" id="v-tab" role="tablist" aria-orientation="vertical" style="background-color: #734E9C;">
-            <img src="/media/backgroundimages/plant_logo.jpeg" class="rounded" alt="...">
-
-            <a class="nav-link active" style="color: white; background-color: #734E9C;" aria-current="page" data-bs-toggle="tab" href="/" role="tab">Home</a>
+            <img src="{% static '/backgroundimages/plant_logo.jpeg' %}" class="rounded" alt="...">
+            <div class="nav-item">
+                <a class="nav-link active" style="color: white; background-color: #734E9C;" aria-current="page" data-bs-toggle="tab" href="/" role="tab">Home</a>
+            </div>
             <a class="nav-link" style="color: white;" data-bs-toggle="tab" href="/all_plants/" role="tab">Plant Library</a>
             {% if request.user.is_authenticated %}
                 <a class="nav-link" style="color: white;" data-bs-toggle="tab" role="tab" href="{% url 'profile' request.user.username %}">Account Info</a>
