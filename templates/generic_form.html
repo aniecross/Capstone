@@ -1,13 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<form method="post" action="" enctype="multipart/form-data">
-  {% csrf_token %} {{ form.as_p }}
-  <input type="submit" value="SUBMIT" /><br/> 
-  <br>
+<div class="float-right">
+  <form method="post" action="" enctype="multipart/form-data">
+    {% csrf_token %} {{ form.as_p }}
+    <input type="submit" value="SUBMIT" />
+    <br>
   {% if errors %}
     <a>{{ errors }}</a></br>
   {% endif %}
-</form>
+  </form>
+</div>
 
 {% endblock %}

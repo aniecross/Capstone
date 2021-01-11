@@ -4,6 +4,8 @@
     <title>Indoor Plant Tracker</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     {% include "bootstrap.partial" %}
+</head>
+<body>
 <br/>
 <div class="float-left navbar-expand-lg">
     <div class="d-flex align-items-start">
@@ -29,13 +31,11 @@
 </div>
     {% if request.user.is_authenticated %}
     <br>
-    <h2 class="text-info">
+    <h2 style="color: #734E9C">
         Welcome {{ request.user }}  a.k.a... {{ request.user.username }}!
     </h2>
     {% endif %}
-</head>
-<body>
-<div class="container float-right">
+<div class="container d-flex flex-column justify-content-center">
 {% block content %}
 
 {% endblock %} 

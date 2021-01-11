@@ -10,7 +10,7 @@
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active h-auto" data-bs-interval="5000">
-      <img src="media/backgroundimages/plant_logo.jpeg" class="d-block w-100 mx-auto" style="max-width: 500px;" alt="...">
+      <img src="/media/backgroundimages/plant_logo.jpeg" class="d-block w-100 mx-auto" style="max-width: 500px;" alt="...">
       <div class="carousel-caption d-none h-100 d-inline-block position-absolute">
         <h5 style="color: black; font-size: 3.2rem;">Welcome to</h5>
         <div style="height: 85px;"></div>
@@ -20,7 +20,7 @@
       </div>
     </div>
     <div class="carousel-item h-auto" data-bs-interval="5000">
-      <img src="media/backgroundimages/house-plants1.png" class="d-block w-100 mx-auto" style="max-width: 500px;" alt="...">
+      <img src="/media/backgroundimages/house-plants1.png" class="d-block w-100 mx-auto" style="max-width: 500px;" alt="...">
       <div class="carousel-caption d-none d-md-block">
         <p style="color: black; font-size: 1.4rem;">Just find your house plant from our plant library and add it to your profile. 
             You will be able to set a watering schedule and journal any observations you have to 
@@ -29,20 +29,11 @@
       </div>
     </div>
     <div class="carousel-item" data-bs-interval="5000">
-      <img src="media/backgroundimages/plant_logo_7.jpg" class="d-block w-100 mx-auto" style="max-width: 500px;" alt="...">
+      <img src="/media/backgroundimages/plant_logo_7.jpg" class="d-block w-100 mx-auto" style="max-width: 500px;" alt="...">
       <div class="carousel-caption d-none d-md-block">
         <h5 style="color: black;">"Plants gives us oxygen for the lungs and for the soul."~LSolegato</h5>
       </div>
     </div>
-<<<<<<< HEAD
-</span>
-<!-- <br/> -->
-{% comment %} TODO: add some quote about happy health plants make for a healthier life {% endcomment %}
-<p class="text-center" style="font-weight: bold; font-size: 1.2rem;">
-    <i>"" Plants gives us oxygen for the lungs and for the soul. ~LSolegato ""</i>
-</p> 
- <br>
-=======
     <a class="carousel-control-prev" href="#homepageSlides" role="button" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden" style="color: black">Previous</span>
@@ -54,7 +45,6 @@
   </div>
 </div>
 <br/>
->>>>>>> f747a8a326af72ec7b85764c3b7c5457459f9334
 <br>
 {% comment %} displays personal plants if logged in {% endcomment %}
 {% if request.user.is_authenticated %}
@@ -65,8 +55,8 @@
     <div class="col-sm-3" style="padding: 1.5rem;">
         <div class="card" style="margin-right: 10px; width: 15rem;">
             <img src="{{ plant.planttype.photo.url }}" class="img-thumbnail card-img-top"  alt="..."/> 
-            <div class="card-body text-center" style="font-size: 2rem;">
-                <strong><a href="/plant/{{plant.id}}/">
+            <div class="card-body text-center" style="font-size: 2rem; color: #5B9C3E;">
+                <strong><a href="/plant/{{plant.id}}/" style="color: #CFB553">
                     {% if plant.planttype.common_name %}
                     {{ plant.planttype.common_name }}
                     {% else %}
@@ -89,6 +79,7 @@
  </div>   
 
   <br/>
+  <div class="float-left">
   <h3>Todays plants that need water:</h3>
   <br/>
   {% if list_for_today %}
@@ -105,6 +96,7 @@
   {% else %}
     <h4>There is nothing to water today! Enjoy the day!</h4>
   {% endif %}
+  </div>
 
 {% endif %}
 
