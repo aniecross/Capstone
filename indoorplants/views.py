@@ -7,7 +7,7 @@ from django.views.generic import View
 from indoorplants.forms import EditPlantForm
 from indoorplants.models import Plant
 from journal.models import Entry
-from plantcalendar.models import PlantCalendarEntry
+from plantcalendar.models import PlantCalendarEntry, PlantWateringEntry
 # Create your views here.
 
 class PlantView(View):
@@ -22,33 +22,43 @@ class LibraryView(View):
         return render(request, 'plantlibrary.html', {'library': library})
         
 @login_required
-def edit_plant(request, plant_id):
+def edit_nickname(request, plant_id):
     plant = Plant.objects.get(id=plant_id)
     if request.method == "POST":
         form = EditPlantForm(request.POST, instance=plant)
         if form.is_valid():
             data = form.cleaned_data
             plant.nickname = data['nickname']
+            plant.save()
+
+            return HttpResponseRedirect(request.GET.get('next', reverse('plant', kwargs={'plant_id': plant.id})))
+
+def edit_watering(request, plant_id):
+    plant = Plant.objects.get(id=plant_id)
+    if request.method == "POST":
+        form = EditPlantForm(request.POST, instance=plant)
+        if form.is_valid():
+            data = form.cleaned_data
             plant.watering = data['watering']
             plant.save()
 
             date = datetime.today()
             days = data['watering']
             next_date = date + timedelta(days=days)
-            notes = "Time to water edit"
-            
-            PlantCalendarEntry.objects.create(
-                owner=plant.owner,
-                plant=plant,
-                notes=notes,
-                entry_date=next_date,
-            )
-
+            notes = "Time to water"
+            rec_date = next_date           
+            for _ in range(400):
+                PlantWateringEntry.objects.create(
+                    owner=plant.owner,
+                    plant=plant,
+                    notes=notes,
+                    entry_date=req_date,
+                )
+                rec_date += timedelta(days=days)
 
             return HttpResponseRedirect(request.GET.get('next', reverse('plant', kwargs={'plant_id': plant.id})))
 
-    form = EditPlantForm(instance=plant)
-    return render(request, "generic_form.html", {'form': form, 'plant': plant})
+
 
 @login_required
 def add_plant(request, plant_id):
@@ -67,14 +77,6 @@ def add_plant(request, plant_id):
         author=me,
         text=text,
         plant=new_plant
-    )
-    notes = "Time to water"
-    date = datetime.today()
-    PlantCalendarEntry.objects.create(
-        owner=me,
-        plant=new_plant,
-        notes=notes,
-        entry_date=date,
     )
     return HttpResponseRedirect(reverse('plant', kwargs={'plant_id': new_plant.id}))
 

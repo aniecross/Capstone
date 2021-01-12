@@ -1,5 +1,6 @@
 {% extends 'base.html' %} 
 {% block content %} 
+{% load static %}
 
 <br />
 <div id="homepageSlides" class="carousel slide" data-bs-ride="carousel" >
@@ -10,26 +11,26 @@
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active h-auto" data-bs-interval="5000">
-      <img src="/media/backgroundimages/plant_logo.jpeg" class="d-block w-100 mx-auto" style="max-width: 500px;" alt="...">
+      <img src="{% static '/backgroundimages/plant_logo.jpeg' %}" class="d-block w-100 mx-auto" style="max-width: 500px;" alt="...">
       <div class="carousel-caption d-none h-100 d-inline-block position-absolute">
         <h5 style="color: black; font-size: 3.2rem;">Welcome to</h5>
-        <div style="height: 85px;"></div>
+        {% comment %} <div style="height: 85px;"></div> {% endcomment %}
         <div class="position-absolute top-100 text-center overflow-visible" style="color: black; font-size: 1.3rem;">
           A place to track your house plants care for optimal growth and health
         </div>
       </div>
     </div>
     <div class="carousel-item h-auto" data-bs-interval="5000">
-      <img src="/media/backgroundimages/house-plants1.png" class="d-block w-100 mx-auto" style="max-width: 500px;" alt="...">
+      <img src="{% static '/backgroundimages/house-plants1.png' %}" class="d-block w-100 mx-auto" style="max-width: 500px;" alt="...">
       <div class="carousel-caption d-none d-md-block">
         <p style="color: black; font-size: 1.4rem;">Just find your house plant from our plant library and add it to your profile. 
             You will be able to set a watering schedule and journal any observations you have to 
             help you have the healthiest plants possible after all ...</p>
-        <div style="height: 250px;"></div>
+        {% comment %} <div style="height: 250px;"></div> {% endcomment %}
       </div>
     </div>
     <div class="carousel-item" data-bs-interval="5000">
-      <img src="/media/backgroundimages/plant_logo_7.jpg" class="d-block w-100 mx-auto" style="max-width: 500px;" alt="...">
+      <img src="{% static '/backgroundimages/plant_logo_7.jpg' %}" class="d-block w-100 mx-auto" style="max-width: 500px;" alt="...">
       <div class="carousel-caption d-none d-md-block">
         <h5 style="color: black;">"Plants gives us oxygen for the lungs and for the soul."~LSolegato</h5>
       </div>

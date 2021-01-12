@@ -61,7 +61,3 @@ def page_not_found(request, exception):
 def internal_server_error(request):
 
     return render(request, '500.html', {})
-
-def error_throwing_view(request):
-    
-    return HttpReponse(status=500)
