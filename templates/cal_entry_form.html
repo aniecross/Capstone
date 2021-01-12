@@ -20,6 +20,9 @@ PlantCalendarEntry
   <table class="form form-table">
     {{ form }}
     <tr><td colspan="2"><button type="submit" class="btn btn-info right"> Submit </button></td></tr>
-  </table>
+</table>
+{% if form.initial.id %}
+ <div><a href="/remove_calendar_entry/{{form.instance.id}}/" class="btn btn-danger">Remove Entry</a></div>
+{% endif %}
 </form>
 {% endblock %}

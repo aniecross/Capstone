@@ -88,4 +88,9 @@ class CreateCalEntry(LoginRequiredMixin, View):
                     entry_date=data['entry_date'],
                 )
                 return HttpResponseRedirect(reverse('calendar'))
+
+def remove_calendar_entry(request, entry_id):
+    instance = PlantCalendarEntry.objects.get(id=entry_id)
+    instance.delete()
+    return HttpResponseRedirect(reverse('calendar'))
     
