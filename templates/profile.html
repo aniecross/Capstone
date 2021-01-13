@@ -20,12 +20,46 @@
     <h3 class="card-title">Password: *** </h3>
     <h3 class="card-title">Email: {{ my_user.email }}</h3>
   </div>
-  <div class="text-right">
-    <button 
-          class="btn btn-lg btn-outline-danger" 
-          type="button"
-        ><a href="/delete_profile/{{request.user.id}}/">Delete Profile</a></button>
+<!-- Button trigger modal -->
+<button 
+  type="button" 
+  class="btn btn-lg btn-outline-danger" 
+  data-bs-toggle="modal" 
+  data-bs-target="#deleteModal"
+>
+    Delete Profile
+</button>
+<!-- Modal -->
+<div 
+  class="modal fade" 
+  id="deleteModal" 
+  tabindex="-1" 
+  aria-labelledby="deleteModalLabel" 
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to delete your account??
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Don't Delete</button>
+        <button type="button" class="btn btn-lg btn-danger">
+          <a href="/delete_profile/{{request.user.id}}/" class="text-light">
+            Delete Profile
+          </a>
+        </button>
+      </div>
+    </div>
   </div>
+</div>
+</div>
+<br />
+
 </div>
 <br>
 {% comment %} this lists each plant that you have in your personal plants {% endcomment %}

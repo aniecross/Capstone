@@ -11,21 +11,21 @@
     <div class="d-flex align-items-start">
         <div class="nav flex-column nav-tabs me-3" id="v-tab" role="tablist" aria-orientation="vertical" style="background-color: #734E9C;">
             <img src="{% static '/backgroundimages/plant_logo.jpeg' %}" class="rounded" alt="...">
-            <div class="nav-item">
-                <a class="nav-link active" style="color: white; background-color: #734E9C;" aria-current="page" data-bs-toggle="tab" href="/" role="tab">Home</a>
-            </div>
-            <a class="nav-link" style="color: white;" data-bs-toggle="tab" href="/all_plants/" role="tab">Plant Library</a>
+            
+            <a class="nav-link" style="color: white; background-color: #734E9C;" aria-current="page" href="/">Home</a>
+            
+            <a class="nav-link" style="color: white;" href="/all_plants/" >Plant Library</a>
             {% if request.user.is_authenticated %}
-                <a class="nav-link" style="color: white;" data-bs-toggle="tab" role="tab" href="{% url 'profile' request.user.username %}">Account Info</a>
-                <a class="nav-link" style="color: white;" data-bs-toggle="tab" role="tab" href="/calendar/">Calendar</a>
-                <a class="nav-link" style="color: white;" data-bs-toggle="tab" role="tab" href="{% url 'logout_page' %}">LOG OUT</a>
+                <a class="nav-link" style="color: white;" href="{% url 'profile' request.user.username %}">Account Info</a>
+                <a class="nav-link" style="color: white;" href="/calendar/">Calendar</a>
+                <a class="nav-link" style="color: white;" href="{% url 'logout_page' %}">LOG OUT</a>
             {% else %}
-                <a class="nav-link" style="color: white;" data-bs-toggle="tab" role="tab" href="{% url 'login_page' %}">LOG IN</a>
-                <a class="nav-link" style="color: white;" data-bs-toggle="tab" role="tab" href="/sign_up/">Sign Up</a>
+                <a class="nav-link" style="color: white;" href="{% url 'login_page' %}">LOG IN</a>
+                <a class="nav-link" style="color: white;" href="/sign_up/">Sign Up</a>
             {% endif %}
             
             {% if request.user.is_staff %}
-                <a class="nav-link" style="color: white;" data-bs-toggle="tab" role="tab" href="/admin_site/">Admin Page</a>
+                <a class="nav-link" style="color: white;" href="/admin_site/">Admin Page</a>
             {% endif %}
         </div>
     </div>
