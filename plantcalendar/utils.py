@@ -5,9 +5,10 @@ import calendar
 
 # (firstweekday=6)
 class Calendar(calendar.HTMLCalendar):
-    def __init__(self, year=None, month=None): 
+    def __init__(self, year=None, month=None, request=None): 
         self.year = year
         self.month = month
+        self.request = request
         super(Calendar, self).__init__()
 
     # formats a day as a td
@@ -33,7 +34,7 @@ class Calendar(calendar.HTMLCalendar):
     # filter tasks by year and month
     def formatmonth(self, withyear=True):
         entries = PlantCalendarEntry.objects.filter(
-            entry_date__year=self.year, entry_date__month=self.month)
+            entry_date__year=self.year, entry_date__month=self.month, owner=self.request.user)
 
         cal = f'<table border="2" cellpadding="3" cellspacing="4" class="calendar">\n'
         cal += f'{self.formatmonthname(self.year, self.month, withyear=withyear)}\n'

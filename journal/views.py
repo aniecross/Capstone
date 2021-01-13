@@ -32,5 +32,3 @@ def remove_entry(request, entry_id):
     entry = Entry.objects.get(id=entry_id)
     entry.delete()
     return HttpResponseRedirect(reverse('homepage'))
-
-    

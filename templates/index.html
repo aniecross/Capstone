@@ -50,6 +50,7 @@
 {% comment %} displays personal plants if logged in {% endcomment %}
 {% if request.user.is_authenticated %}
 <div class="d-block">
+
 <h1>My Plants</h1>
 <div class="row">
     {% for plant in plants %}
@@ -78,7 +79,6 @@
     <br>
     {% endfor %}
  </div>   
-
   <br/>
   <div class="float-left">
   <h3>Todays plants that need water:</h3>
