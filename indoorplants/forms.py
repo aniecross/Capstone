@@ -1,8 +1,13 @@
 from django import forms
 from indoorplants.models import Plant
 
-class EditPlantForm(forms.ModelForm):
+class EditNicknameForm(forms.ModelForm):
     class Meta:
         model = Plant
-        fields = ['nickname', 'watering']
+        fields = ['nickname']
+        
+class EditWateringForm(forms.ModelForm):
+    class Meta:
+        model = Plant
+        fields = ['watering']
         

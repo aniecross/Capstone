@@ -38,4 +38,6 @@ class PlantWateringEntry(models.Model):
         if self.plant.nickname:
             return self.plant.nickname
         else:
-            return self.plant.planttype.name
+            return self.plant.planttype.common_name
+
+    

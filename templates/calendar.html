@@ -1,18 +1,22 @@
-{% extends 'base.html' %}
-{% block content %}
-<link rel="stylesheet" type="text/css" href="/static/plantcalendar/style.css"> 
+{% extends 'base.html' %} {% block content %}
+<link rel="stylesheet" type="text/css" href="/static/plantcalendar/style.css" />
 {% load static %}
-  <br/>
-  <br/>
+<br />
+<br />
 <div class="clearfix">
-  <a class="btn btn-info left" href="{% url 'calendar_entry' %}"> Create Calendar Entry </a>
-	<a class="btn btn-info left" href="{% url 'calendar' %}?{{ prev_month }}"> Previous Month </a>
-	<a class="btn btn-info right" href="{% url 'calendar' %}?{{ next_month }}"> Next Month </a>
+  <a class="btn btn-outline-dark left" style="background-color: #778F48;" href="{% url 'calendar_entry' %}">
+    Create Calendar Entry
+  </a>
+  <a class="btn btn-outline-dark left" style="background-color: #778F48;" href="{% url 'calendar' %}?{{ prev_month }}">
+    Previous Month
+  </a>
+  <a class="btn btn-outline-dark right" style="background-color: #778F48;" href="{% url 'calendar' %}?{{ next_month }}">
+    Next Month
+  </a>
 </div>
-<br/>
-<br/>
-  {{ calendar }}
-  
+<br />
+<br />
+
+{{ calendar }} 
+
 {% endblock %}
-
-

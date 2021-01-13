@@ -4,10 +4,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, reverse, HttpResponseRedirect, redirect
 from django.views.generic import View
 
-from indoorplants.forms import EditPlantForm
+from indoorplants.forms import EditNicknameForm, EditWateringForm
 from indoorplants.models import Plant
 from journal.models import Entry
-from plantcalendar.models import PlantCalendarEntry, PlantWateringEntry
+from plantcalendar.models import PlantWateringEntry
 # Create your views here.
 
 class PlantView(View):
@@ -25,22 +25,27 @@ class LibraryView(View):
 def edit_nickname(request, plant_id):
     plant = Plant.objects.get(id=plant_id)
     if request.method == "POST":
-        form = EditPlantForm(request.POST, instance=plant)
+        form = EditNicknameForm(request.POST, instance=plant)
         if form.is_valid():
             data = form.cleaned_data
             plant.nickname = data['nickname']
             plant.save()
 
-            return HttpResponseRedirect(request.GET.get('next', reverse('plant', kwargs={'plant_id': plant.id})))
+        return HttpResponseRedirect(request.GET.get('next', reverse('plant', kwargs={'plant_id': plant.id})))
 
+@login_required
 def edit_watering(request, plant_id):
     plant = Plant.objects.get(id=plant_id)
     if request.method == "POST":
-        form = EditPlantForm(request.POST, instance=plant)
+        form = EditWateringForm(request.POST, instance=plant)
         if form.is_valid():
             data = form.cleaned_data
             plant.watering = data['watering']
             plant.save()
+
+            all_watering_entries = PlantWateringEntry.objects.filter(plant=plant)
+            for entry in all_watering_entries:
+                entry.delete()
 
             date = datetime.today()
             days = data['watering']
@@ -52,12 +57,34 @@ def edit_watering(request, plant_id):
                     owner=plant.owner,
                     plant=plant,
                     notes=notes,
-                    entry_date=req_date,
+                    entry_date=rec_date,
                 )
                 rec_date += timedelta(days=days)
 
-            return HttpResponseRedirect(request.GET.get('next', reverse('plant', kwargs={'plant_id': plant.id})))
+            return redirect('plant', kwargs={'plant_id': plant.id})
 
+@login_required
+def alt_watering(request, plant_id):
+    plant = Plant.objects.get(id=plant_id)
+    all_watering_entries = PlantWateringEntry.objects.filter(plant=plant)
+    for entry in all_watering_entries:
+        entry.delete()
+
+    date = datetime.today()
+    days = plant.watering
+    next_date = date + timedelta(days=days)
+    notes = "Time to water"
+    rec_date = next_date           
+    for _ in range(100):
+        PlantWateringEntry.objects.create(
+            owner=plant.owner,
+            plant=plant,
+            notes=notes,
+            entry_date=rec_date,
+        )
+        rec_date += timedelta(days=days)
+
+    return HttpResponseRedirect(reverse('plant', kwargs={'plant_id': plant.id}))
 
 
 @login_required

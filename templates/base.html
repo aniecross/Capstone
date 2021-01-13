@@ -1,48 +1,105 @@
 {% load static %}
 <html lang="en">
-<head>
+  <head>
     <title>Indoor Plant Tracker</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
     {% include "bootstrap.partial" %}
-</head>
-<body>
-<br/>
-<div class="float-left navbar-expand-lg">
-    <div class="d-flex align-items-start">
-        <div class="nav flex-column nav-tabs me-3" id="v-tab" role="tablist" aria-orientation="vertical" style="background-color: #734E9C;">
-            <img src="{% static '/backgroundimages/plant_logo.jpeg' %}" class="rounded" alt="...">
-            <li class="nav-item">
-                <a class="nav-link active" style="color: white; background-color: #734E9C;" aria-current="page" data-bs-toggle="tab" href="/" role="tab">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" style="color: white;" data-bs-toggle="tab" href="/all_plants/" role="tab">Plant Library</a>
-            </li>
-            {% if request.user.is_authenticated %}
-                <a class="nav-link" style="color: white;" data-bs-toggle="tab" role="tab" href="{% url 'profile' request.user.username %}">Account Info</a>
-                <a class="nav-link" style="color: white;" data-bs-toggle="tab" role="tab" href="/calendar/">Calendar</a>
-                <a class="nav-link" style="color: white;" data-bs-toggle="tab" role="tab" href="{% url 'logout_page' %}">LOG OUT</a>
-            {% else %}
-                <a class="nav-link" style="color: white;" data-bs-toggle="tab" role="tab" href="{% url 'login_page' %}">LOG IN</a>
-                <a class="nav-link" style="color: white;" data-bs-toggle="tab" role="tab" href="/sign_up/">Sign Up</a>
-            {% endif %}
-            
-            {% if request.user.is_staff %}
-                <a class="nav-link" style="color: white;" data-bs-toggle="tab" role="tab" href="/admin_site/">Admin Page</a>
-            {% endif %}
+  </head>
+  <body>
+    <br />
+
+    <nav class="float-left navbar-expand-lg">
+      <div class="d-flex align-items-center">
+        <div
+          class="nav flex-column nav-tabs me-3"
+          aria-orientation="vertical"
+          style="background-color: #8f6479"
+        >
+          <img
+            src="{% static '/backgroundimages/plant_logo.jpeg' %}"
+            class="rounded"
+            alt="..."
+          />
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              style="color: white;"
+              aria-current="page" 
+              href="/" 
+              >Home</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              style="color: white"
+              href="/all_plants/"
+              >Plant Library</a
+            >
+          </li>
+          {% if request.user.is_authenticated %}
+          <a
+            class="nav-link"
+            style="color: white"
+            href="{% url 'profile' request.user.username %}"
+            >Account Info</a
+          >
+          <a
+            class="nav-link"
+            style="color: white"
+            href="/calendar/"
+            >Calendar</a
+          >
+          <a
+            class="nav-link"
+            style="color: white"
+            href="{% url 'logout_page' %}"
+            >LOG OUT</a
+          >
+          {% else %}
+          <a
+            class="nav-link"
+            style="color: white"
+            href="{% url 'login_page' %}"
+            >LOG IN</a
+          >
+          <a
+            class="nav-link"
+            style="color: white"
+            href="/sign_up/"
+            >Sign Up</a
+          >
+          {% endif %} {% if request.user.is_staff %}
+          <a
+            class="nav-link"
+            style="color: white"
+            href="/admin_site/"
+            >Admin Page</a
+          >
+          {% endif %}
         </div>
-    </div>
-</div>
+      </div>
+    </nav>
+
+
     {% if request.user.is_authenticated %}
-    <br>
-    <h2 style="color: #734E9C">
-        Welcome {{ request.user }}  a.k.a... {{ request.user.username }}!
-    </h2>
+    <br />
+    <div class="d-flex">
+      <h2 style="color: #dbd5a4; text-shadow: 1px 1px 0 #444">
+        Welcome {{ request.user }} a.k.a... {{ request.user.username }}!
+      </h2>
+    </div>
     {% endif %}
-<div class="container d-flex flex-column justify-content-center">
-{% block content %}
-
-{% endblock %} 
-</div>
-</body>
-
+    <div class="float-right">
+        <img href="{% static '/backgroundimages/hanging-plant3.png' %}"
+    </div>
+    <div class="container d-flex flex-column justify-content-center">
+      {% block content %} {% endblock %}
+    </div>
+  </body>
 </html>
+
+{% comment %} color palette : green #778F48 , purple #8f6479, tan #DBD5A4 {% endcomment %}

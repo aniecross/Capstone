@@ -25,7 +25,7 @@ class CalendarView(ListView):
         d = get_date(self.request.GET.get('month', None))
 
         # Instantiate our calendar class with today's year and date
-        cal = Calendar(d.year, d.month)
+        cal = Calendar(d.year, d.month, request=self.request)
         cal.setfirstweekday(firstweekday=6)
 
         # Call the formatmonth method, which returns our calendar as a table

@@ -1,78 +1,189 @@
-{% extends 'base.html' %} 
-{% block content %} 
+{% extends 'base.html' %} {% block content %} 
 {% comment %} to display plant type details {% endcomment %}
 <div class="mx-auto">
-<h1>Plant Details</h1>
-<br />
-<strong><h2 style="color: #CFB553">{{ plant.planttype.name }}</h2></strong>
-<div class="col-md-4">
-    <img src="{{ plant.planttype.photo.url }}" class="img-responsive" style="width: 100%; float: right; margin-right: 10px;" /> 
-</div>
-<br/>
-<h4>Sunlight Type: {{plant.planttype.sunlight_type}}</h4>
-<br/>
-<h4>Watering Frequency: {{plant.planttype.water_freq}}</h4>
-<br/>
-<h4>Soil Type: {{plant.planttype.soil_type}}</h4>
-<br/>
-<h4>Moisture Level: {{plant.planttype.moisture_level}}</h4>
-<br/>
-<h4>Common Problems: {{plant.planttype.common_problems}}</h4>
-<br/>
-{% if plant.planttype.notes %}
-<h4>Other Notes: {{plant.planttype.notes}}</h4>
-{% endif %}
-<br/>
-
-{% if plant.owner.username == 'admin' %}
-<div><a href="/add_plant/{{plant.id}}/" class="btn btn-info">Add plant to my profile</a></div>
-{% endif %}
-
-{% comment %} if this is a personal plant display... {% endcomment %}
-{% if plant.owner.username != 'admin' %}
-<h2>My Plant</h2>
-<div><a href="/edit_plant/{{plant.id}}/" class="btn btn-info">Edit Plant Details</a></div>
-<br/>
-<h3>Name: {{plant.nickname}}</h3>
-<div class="input-group mb-3">
-  <input type="text" class="form-control" placeholder="Change Plant Nickname" aria-label="Change Plant Nickname" aria-describedby="button-addon2">
-  <button class="btn btn-outline-info" type="button" id="button-addon2">Submit</button>
-</div>
-
-
-
-
-<br/>
-<h4>My watering frequency: every {{plant.watering}} days</h4>
-<br/>
-<h4>Next date to water:</h4>
-{% comment %} TODO: calculate next date water is due {% endcomment %}
-{% comment %} TODO: add button to click 'i watered plant today' that will restart the watering countdown{% endcomment %}
-<br/>
-</div>
-<div><a href="/remove_plant/{{plant.id}}/" class="btn btn-info">Remove plant from my profile</a></div>
-<br/>
-<br/>
-<p>
-<h2>My Plant Journal</h2>
-<div><a class="btn btn-info" href="{% url 'new_entry' plant.id %}">Create Journal Entry</a></div>
-</p>
-{% for entry in journal %}
-<div class="card" style='width: 50%'>
-    <div class="card-title"> <div><a href="/remove_entry/{{entry.id}}/" class="btn btn-info" style="float: right">X</a></div>
-        "{{entry.text}}"
-        <br>
-        Posted On: {{entry.created}}
-        {% if entry.photo %}
-        <div class="card-body">
-            <img src="{{ entry.photo.url }}" class="img-responsive" style="width: 100%; float: right; margin-right: 10px;" /> 
+    <div class="card" style="width: 55rem;">
+        <div class="row" style="--bs-gutter-x: 0">
+            <div class="card-header text-center">
+                <h1>Plant Details</h1>
+                <strong><h2 style="color: #778F48">{{ plant.planttype.name }}</h2></strong>
+            </div>
         </div>
-        {% endif %}
+        <div class="row">
+            <div class="col-6">
+                <div class="card-body" >
+                    <img
+                        src="{{ plant.planttype.photo.url }}"
+                        class="img-responsive"
+                        style="width: 30rem; padding: 1rem"
+                    />
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <h4>Sunlight Type:  {{plant.planttype.sunlight_type}}</h4>
+                        </li>
+                        <li class="list-group-item">
+                            <h4>Watering Frequency:  {{plant.planttype.water_freq}}</h4>
+                        </li>
+                        <li class="list-group-item">
+                            <h4>Soil Type:  {{plant.planttype.soil_type}}</h4>
+                        </li>
+                        <li class="list-group-item">
+                            <h4>Moisture Level:  {{plant.planttype.moisture_level}}</h4>
+                        </li>
+                        <li class="list-group-item">
+                            <h4>Common Problems:  {{plant.planttype.common_problems}}</h4>
+                        </li>
+                        {% if plant.planttype.notes %}
+                        <li class="list-group-item">
+                            <h4>Other Notes:  {{plant.planttype.notes}}</h4>
+                        </li>
+                        {% endif %}
+                    </ul>
+                    {% if plant.owner.username == 'admin' %}
+                    <div class="mx-auto">
+                        <a
+                        href="/add_plant/{{plant.id}}/"
+                        class="btn  btn-lg btn-outline-light"
+                        style="background-color: #8f6479"
+                        >Add plant to my profile</a
+                        >
+                    </div>
+                    {% endif %} 
+                </div>
+            </div>
+        </div>
     </div>
-</div>
-<br>
-{% endfor %}
-<br/>
+    <br/>
+    {% comment %} if this is a personal plant display... {% endcomment %} 
+    {% if plant.owner.username != 'admin' %}
+    <div class="card" style="width: 48rem">
+        <div class="card-header text-center">
+            <h1>My Plant</h1>
+            <a
+                href="/remove_plant/{{plant.id}}/"
+                class="btn btn-outline-light"
+                style="background-color: #8f6479">
+                    Remove plant from my profile
+            </a>
+        </div>
+        <form class="row g-3 card-body">
+            <div class="col-6">
+                <h3>Name: {{plant.nickname}}</h3>
+            </div>
+            <div class="col-6">
+            <form method="post" action="" enctype="multipart/form-data">
+            {% csrf_token %} {{ form.as_p }}
+                <div class="input-group mb-3">
+                    <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Change Plant Nickname"
+                    aria-label="Change Plant Nickname"
+                    aria-describedby="button-addon1"
+                    />
+                    <a
+                    class="btn btn-outline-light"
+                    style="background-color: #8f6479"
+                    role="button"
+                    id="button-addon1"
+                    href="/edit_nickname/{{plant.id}}/">
+                        Submit
+                    </a>
+                </div>
+                {% if errors %}
+                <a>{{ errors }}</a></br>
+                {% endif %}
+            </form>
+            </div>
+            <div class="col-8">
+                <h4>My watering frequency: every {{plant.watering}} days</h4>
+            </div>
+            <div class="col-4">
+            <form method="post" action="" enctype="multipart/form-data">
+            {% csrf_token %} {{ form.as_p }}
+                <div class="input-group mb-3">
+                    <input
+                    type="number"
+                    class="form-control"
+                    placeholder="# of days"
+                    aria-label="# of days"
+                    aria-describedby="button-addon2"
+                    />
+                    <a
+                    class="btn btn-outline-light"
+                    type="submit"
+                    id="button-addon2"
+                    style="background-color: #8f6479"
+                    href="/edit_watering/{{plant.id}}/">
+                        Submit
+                    </a>
+                </div>
+            {% if errors %}
+                <a>{{ errors }}</a></br>
+            {% endif %}
+            </form>
+            </div>
+            <a
+            class="btn btn-outline-light"
+            style="background-color: #8f6479"
+            href="/alt_watering/{{plant.id}}/"
+            role="button">
+                I watered this plant today!
+            </a>
+            <br />
+        </form>
+    </div>
+    <br />
+    <div class="card" style="width: 48rem">
+        <div class="card-header text-center">
+            <h1>My Plant Journal</h1>
+            <div><a
+                class="btn btn-outline-light"
+                style="background-color: #8f6479"
+                href="{% url 'new_entry' plant.id %}">
+                    Create Journal Entry
+                </a>
+            </div>
+        </div>
+        {% for entry in journal %}
+        <div class="card" style="width: 48rem">
+            <div class="card-title">
+                <div class="row" style="--bs-gutter-x: 0">
+                    <h5 
+                        class="text-center col-11" 
+                        style="padding-top: 10px">
+                            Posted On: {{entry.created}}
+                    </h5> 
+                    <a
+                        href="/remove_entry/{{entry.id}}/"
+                        class="btn btn-outline-danger col-1"
+                        style="">
+                            X
+                    </a>
+                </div>
+            </div>
+            <div class="card-body text-center">
+                {% if entry.photo %}
+                <img
+                    src="{{ entry.photo.url }}"
+                    class="img-thumbnail rounded float-start"
+                    style="max-width: 20rem"
+                />
+                <div class="text-center float-right">
+                    "{{entry.text}}"
+                </div>
+                {% else %}
+                "{{entry.text}}"
+                {% endif %}
+            </div>
+        </div>
+        <br/>
+        {% endfor %}
+    </div>
 
-{% endif %}
+    {% endif %} 
+</div>
 {% endblock %}
