@@ -1,47 +1,29 @@
-RUBRIC
-This criterion is linked to a Learning Outcome
-At least three (3) class-based views
-* class LoginView
-* class LogoutView
-* class SignUpView
+## Capstone - PlantLife
 
-This criterion is linked to a Learning Outcome
-Secrets are not committed to VCS (hint: use .env)
-* 
+* Overview:
+Plantlife is a great place for house plants enthusiast.
+A journal for users to effortlessly tract and change their plants care routine. 
 
-All network requests have sufficient exception handling for 4xx and 5xx responses
-Specifically looking to handle 404 and 500 errors
+* List of technologies used within the project:
+Django==3.1.5
+Pillow==8.1.0
+python-dotenv==0.15.0
+pytz==2020.5
+sqlparse==0.4.1
+asgiref==3.3.1
 
-This criterion is linked to a Learning Outcome
-All views are DRY with all helpers factored out to appropriate modules
+* Requires
+Python-version 3.9
 
-This criterion is linked to a Learning Outcome 
-At least one simple form and one model form
+* Installation
+git clone https://github.com/aniecross/Capstone
+cd ../path to the file
+pipenv install
+pipenv shell 
+python manage.py runserver
 
-This criterion is linked to a Learning Outcome
-All models are registered with the admin interface
-
-At least three database queryset methods used: all(), get(), filter()
-
-At least five fields of the following list are used among all models: BooleanField, CharField, DateField, DatetimeField, FloatField, EmailField, TextField, URLField
-
-This criterion is linked to a Learning Outcome At least one view has additional arguments passed via url path
-
-Logo: PLANTLIFE
-website url:
-
-*   **House Plants**
-    *   List
-    *   Images
-    *   Common name
-    *   Scientific name
-    *   Variations...?
-
-
-*   **Plant Care guide**
-    *   Low maintenance
-    *   Low light / Direct sunlight
-    *   Soil type
-    *   Watering timeframe
-    *   
-*   ** **
+* Contributors
+Greg Spurgeon
+Haley Collard
+Bethsheba Zebata
+Anie Cross
