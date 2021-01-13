@@ -7,7 +7,7 @@ def generate_data_planttype():
   library_data = [
     {
     "name":'Pothos',
-    "common_name":'',
+    "common_name":'Pothos',
     "photo":'images/pothos.jpg',
     'sunlight_type':'Indirect',
     'water_freq':'7-10 days',
@@ -18,7 +18,7 @@ def generate_data_planttype():
     },
     {
     'name':'Air Plants',
-    'common_name':'',
+    'common_name':'Air Plants',
     'photo':'images/air-plants.jpg',
     'sunlight_type':'Indirect',
     'water_freq':'7-10 days',
@@ -139,7 +139,7 @@ def generate_data_planttype():
     },
     {
     'name':'Bromeliad',
-    'common_name':'',
+    'common_name':'Bromeliad',
     'photo':'images/Bromeliad.jpeg',
     'sunlight_type':'Indirect',
     'water_freq':'Monthly',
@@ -150,7 +150,7 @@ def generate_data_planttype():
     },
     {
     'name':'Kalanchoe',
-    'common_name':'',
+    'common_name':'Kalanchoe',
     'photo':'images/kalanchoe.jpg',
     'sunlight_type':'Indirect',
     'water_freq':'14-21 days',
@@ -172,7 +172,7 @@ def generate_data_planttype():
     },
     {
     'name':'Philodendron',
-    'common_name':'',
+    'common_name':'Philodendron',
     'photo':'images/Philodendron.JPG',
     'sunlight_type':'Indirect',
     'water_freq':'7-10 days',
@@ -216,7 +216,7 @@ def generate_data_planttype():
     },
     {
     'name':'Schefflera',
-    'common_name':'',
+    'common_name':'Schefflera',
     'photo':'images/Schefflera.jpg',
     'sunlight_type':'Indirect',
     'water_freq':'7-10 days',
@@ -238,7 +238,7 @@ def generate_data_planttype():
     },
     {
     'name':'Yucca',
-    'common_name':'',
+    'common_name':'Yucca',
     'photo':'images/yucca.jpeg',
     'sunlight_type':'Direct',
     'water_freq':'14-21 days',

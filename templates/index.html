@@ -1,103 +1,148 @@
-
-{% extends 'base.html' %} 
-{% block content %} 
-{% load static %}
+{% extends 'base.html' %} {% block content %} {% load static %}
 <br />
-<div id="homepageSlides" class="carousel slide" data-bs-ride="carousel" >
+<div id="homepageSlides" class="carousel slide" data-bs-ride="carousel">
   <ol class="carousel-indicators" style="color: black">
-    <li data-bs-target="#homepageSlides" data-bs-slide-to="0" class="active" style="color: black"></li>
-    <li data-bs-target="#homepageSlides" data-bs-slide-to="1" style="color: black"></li>
-    <li data-bs-target="#homepageSlides" data-bs-slide-to="2" style="color: black"></li>
+    <li
+      data-bs-target="#homepageSlides"
+      data-bs-slide-to="0"
+      class="active"
+      style="background-color: black"
+    ></li>
+    <li
+      data-bs-target="#homepageSlides"
+      data-bs-slide-to="1"
+      style="background-color: black"
+    ></li>
+    <li
+      data-bs-target="#homepageSlides"
+      data-bs-slide-to="2"
+      style="background-color: black"
+    ></li>
   </ol>
   <div class="carousel-inner">
-    <div class="carousel-item active h-auto" data-bs-interval="5000">
-      <img src="{% static '/backgroundimages/plant_logo.jpeg' %}" class="d-block w-100 mx-auto" style="max-width: 500px;" alt="...">
+    <div class="carousel-item active h-auto" data-bs-interval="3000">
+      <img
+        src="{% static '/backgroundimages/plant_logo.jpeg' %}"
+        class="d-block w-100 mx-auto"
+        style="max-width: 500px"
+        alt="..."
+      />
       <div class="carousel-caption d-none h-100 d-inline-block position-absolute">
-        <h5 style="color: black; font-size: 3.2rem;">Welcome to</h5>
-        <div class="position-absolute top-100 text-center overflow-visible" style="color: black; font-size: 1.3rem;">
+        <h5 style="color: black; font-size: 3.2rem">Welcome to</h5>
+        <div
+          class="position-absolute top-100 text-center overflow-visible"
+          style="color: black; font-size: 1.3rem"
+        >
           A place to track your house plants care for optimal growth and health
         </div>
       </div>
     </div>
-    <div class="carousel-item h-auto" data-bs-interval="5000">
-      <img src="{% static '/backgroundimages/house-plants1.png'%}" class="d-block w-100 mx-auto" style="max-width: 500px;" alt="...">
+    <div class="carousel-item h-auto" data-bs-interval="11000">
+      <img
+        src="{% static '/backgroundimages/house-plants1.png' %}"
+        class="d-block w-100 mx-auto"
+        style="max-width: 500px"
+        alt="..."
+      />
       <div class="carousel-caption d-none d-md-block">
-        <p style="color: black; font-size: 1.4rem;">Just find your house plant from our plant library and add it to your profile. 
-            You will be able to set a watering schedule and journal any observations you have to 
-            help you have the healthiest plants possible after all ...</p>
+        <p style="color: black; font-size: 1.4rem">
+          Just find your house plant from our plant library and add it to your
+          profile. You will be able to set a watering schedule and journal any
+          observations you have to help you have the healthiest plants possible
+          after all ...
+        </p>
       </div>
     </div>
     <div class="carousel-item" data-bs-interval="5000">
-      <img src="{%  static '/backgroundimages/plant_logo_7.jpg'%}" class="d-block w-100 mx-auto" style="max-width: 500px;" alt="...">
+      <img
+        src="{% static '/backgroundimages/plant_logo_7.jpg' %}"
+        class="d-block w-100 mx-auto"
+        style="max-width: 500px"
+        alt="..."
+      />
       <div class="carousel-caption d-none d-md-block">
-        <h5 style="color: black;">"Plants gives us oxygen for the lungs and for the soul."~LSolegato</h5>
+        <h5 style="color: black">
+          "Plants gives us oxygen for the lungs and for the soul."~LSolegato
+        </h5>
       </div>
     </div>
-    <a class="carousel-control-prev" href="#homepageSlides" role="button" data-bs-slide="prev">
+    <a
+      class="carousel-control-prev"
+      href="#homepageSlides"
+      role="button"
+      data-bs-slide="prev"
+    >
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden" style="color: black">Previous</span>
     </a>
-    <a class="carousel-control-next" href="#homepageSlides" role="button" data-bs-slide="next">
+    <a
+      class="carousel-control-next"
+      href="#homepageSlides"
+      role="button"
+      data-bs-slide="next"
+    >
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden" style="color: black">Next</span>
     </a>
   </div>
 </div>
-<br/>
-<br>
-{% comment %} displays personal plants if logged in {% endcomment %}
+<br />
+<br />
+{% comment %} displays personal plants if logged in {% endcomment %} 
 {% if request.user.is_authenticated %}
 <div class="d-block">
-
-<h1>My Plants</h1>
-<div class="row">
+  <h1>My Plants</h1>
+  <div class="row">
     {% for plant in plants %}
-    <div class="col-sm-3" style="padding: 1.5rem;">
-        <div class="card" style="margin-right: 10px; width: 15rem;">
-            <img src="{{ plant.planttype.photo.url }}" class="img-thumbnail card-img-top"  alt="..."/> 
-            <div class="card-body text-center" style="font-size: 2rem; color: #5B9C3E;">
-                <strong><a href="/plant/{{plant.id}}/" style="color: #CFB553">
-                    {% if plant.planttype.common_name %}
-                    {{ plant.planttype.common_name }}
-                    {% else %}
-                    {{ plant }}
-                    {% endif %}
-                    <br>
-                </a></strong>
-                <span style="font-size: large">
-                    {% if plant.nickname %}
-                    {{ plant.nickname }}
-                    {% endif %}
-                </span>
-                    
-                    <br>
-            </div>
-        </div> 
+    <div class="col-sm-3" style="padding: 1.5rem">
+      <div class="card" style="margin-right: 10px; width: 15rem">
+        <img
+          src="{{ plant.planttype.photo.url }}"
+          class="img-thumbnail card-img-top"
+          alt="..."
+        />
+        <div
+          class="card-body text-center"
+          style="font-size: 2rem; color: #5b9c3e"
+        >
+          <strong><a href="/plant/{{plant.id}}/" style="color: #778F48">
+            {% if plant.planttype.common_name %} 
+            {{ plant.planttype.common_name }} {% else %} {{ plant }} {% endif %}
+          </a></strong>
+          <span style="font-size: large">
+            {% if plant.nickname %} {{ plant.nickname }} {% endif %}
+          </span>
+          <br />
+          <p class="card-text">
+            {% if j_entries.plant == plant %} {{ j_entries.text }} {% endif %}
+          </p>
+        </div>
+      </div>
     </div>
-    <br>
+    <br />
     {% endfor %}
- </div>   
-  <br/>
-  <div class="float-left">
-  <h3>Todays plants that need water:</h3>
-  <br/>
-  {% if list_for_today %}
-    {% for entry in list_for_today %}
-      {% if entry.plant.nickname %}
-        <h4>{{ entry.plant.nickname }}:</h4>
-      {% elif  entry.plant.planttype.common_name %}
-        <h4>{{ entry.plant.planttype.common_name }}:</h4>
-      {% else %}
-        <h4>{{ entry.plant.planttype.name }}:</h4>
-      {% endif %}
-      <h4>{{ entry.notes }}</h4>
-    {% endfor %}
-  {% else %}
-    <h4>There is nothing to water today! Enjoy the day!</h4>
-  {% endif %}
   </div>
 
-{% endif %}
+  <br />
+  <div class="float-left">
+    <h3>Todays plants that need water:</h3>
+    <br />
+    {% if list_for_today %} 
+      {% for entry in list_for_today %} 
+        {% if entry.plant.nickname %}
+          <h4>{{ entry.plant.nickname }}:</h4>
+          {% elif entry.plant.planttype.common_name %}
+          <h4>{{ entry.plant.planttype.common_name }}:</h4>
+          {% else %}
+          <h4>{{ entry.plant.planttype.name }}:</h4>
+        {% endif %}
+      <h4>{{ entry.notes }}</h4>
+      {% endfor %} 
+    {% else %}
+    <h4>There is nothing to water today! Enjoy the day!</h4>
+    {% endif %}
+  </div>
 
+  {% endif %}
 </div>
 {% endblock %}

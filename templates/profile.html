@@ -1,23 +1,23 @@
-{% extends 'base.html' %} 
-{% if request.user.is_authenticated %}
-{% block content %} 
-
+{% extends 'base.html' %} {% if request.user.is_authenticated %} {% block content %} 
 {% comment %} this displays your personal info created at signup {% endcomment %}
 <br />
 <div class="card">
   <div class="card-header row">
-    <h2 class="col-8">{{ my_user }} / {{ my_user.username }}</h2> 
+    <h2 class="col-8">{{ my_user }} / {{ my_user.username }}</h2>
     <div class="text-right col-4">
-      <button 
-        class="btn btn-lg btn-info" 
-        type="button"
-      ><a style="color: white" href="/edit/{{my_user.username}}/">Edit Login Details</a></button>
+      <button class="btn btn-lg btn-info" type="button">
+        <a style="color: white" href="/edit/{{my_user.username}}/">
+          Edit Login Details
+        </a>
+      </button>
     </div>
-  </div>  
+  </div>
   <div class="card-body">
-    <h3 class="card-title">Name: {{ my_user.first_name }} {{my_user.last_name}}</h3>
+    <h3 class="card-title">
+      Name: {{ my_user.first_name }} {{my_user.last_name}}
+    </h3>
     <h3 class="card-title">Username: {{ my_user.username }}</h3>
-    <h3 class="card-title">Password: *** </h3>
+    <h3 class="card-title">Password: ***</h3>
     <h3 class="card-title">Email: {{ my_user.email }}</h3>
   </div>
 <!-- Button trigger modal -->
@@ -59,18 +59,16 @@
 </div>
 </div>
 <br />
-
-</div>
-<br>
 {% comment %} this lists each plant that you have in your personal plants {% endcomment %}
 <ul>
   {% for plant in my_user.myplants %}
   <li>
-    <strong><a href="/plant/{{my_user.username}}/{{plant.plant_id}}/">{{ plant }}</a></strong>
+    <strong><a href="/plant/{{my_user.username}}/{{plant.plant_id}}/">
+      {{ plant }}
+    </a></strong>
   </li>
-  <br>
+  <br />
   {% endfor %}
 </ul>
 
-{% endblock %}
-{% endif %} 
+{% endblock %} {% endif %}

@@ -30,5 +30,8 @@ class CreateEntryView(LoginRequiredMixin, View):
 @login_required
 def remove_entry(request, entry_id):
     entry = Entry.objects.get(id=entry_id)
+    plant_id = entry.plant.id
     entry.delete()
-    return HttpResponseRedirect(reverse('homepage'))
+    return HttpResponseRedirect(reverse('plant', kwargs={'plant_id': plant_id}))
+
+    

@@ -27,3 +27,17 @@ class PlantCalendarEntry(models.Model):
         else:
             return f'<a href="{url}">{self.plant}</a>'
 
+
+class PlantWateringEntry(models.Model):
+    owner = models.ForeignKey(MyUser, on_delete=models.CASCADE)
+    plant = models.ForeignKey(Plant, on_delete=models.CASCADE)
+    notes = models.TextField(blank=True, null=True)
+    entry_date = models.DateField()
+
+    def __str__(self):
+        if self.plant.nickname:
+            return self.plant.nickname
+        else:
+            return self.plant.planttype.common_name
+
+    
