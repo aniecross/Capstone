@@ -87,9 +87,9 @@
 
     {% if request.user.is_authenticated %}
     <br />
-    <div class="d-flex">
+    <div class="d-flex float-right">
       <h2 style="color: #dbd5a4; text-shadow: 1px 1px 0 #444">
-        Welcome {{ request.user }} a.k.a... {{ request.user.username }}!
+        Welcome {{ request.user.first_name }}!
       </h2>
     </div>
     {% endif %}

@@ -4,7 +4,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, reverse, HttpResponseRedirect, redirect
 from django.views.generic import View
 
-from indoorplants.forms import EditNicknameForm, EditWateringForm
 from indoorplants.models import Plant
 from journal.models import Entry
 from plantcalendar.models import PlantWateringEntry
@@ -14,34 +13,13 @@ class PlantView(View):
     def get(self, request, plant_id):
         plant = Plant.objects.get(id=plant_id)
         journal = Entry.objects.filter(plant=plant_id).order_by("created")[::-1]
-        return render(request, 'plantdetail.html', {'plant': plant, 'journal': journal})
-
-class LibraryView(View):
-    def get(self, request):
-        library = Plant.objects.filter(owner=1)
-        return render(request, 'plantlibrary.html', {'library': library})
-        
-
-def edit_nickname(request, plant_id):
-    plant = Plant.objects.get(id=plant_id)
-    # if request.method == "POST":
-    #     form = EditNicknameForm(request.POST)
-    #     if form.is_valid():
-    nickname = request.GET.get('nickname')
-            # data = form.cleaned_data
-    plant.nickname = nickname
-    plant.save()
-    
-    return HttpResponseRedirect(request.GET.get('next', reverse('plant', kwargs={'plant_id': plant.id})))
-
-@login_required
-def edit_watering(request, plant_id):
-    plant = Plant.objects.get(id=plant_id)
-    if request.method == "POST":
-        form = EditWateringForm(request.POST, instance=plant)
-        if form.is_valid():
-            data = form.cleaned_data
-            plant.watering = data['watering']
+        nickname = request.GET.get('nickname')
+        watering = request.GET.get('watering')
+        if nickname: 
+            plant.nickname = nickname
+            plant.save()
+        if watering:
+            plant.watering = watering
             plant.save()
 
             all_watering_entries = PlantWateringEntry.objects.filter(plant=plant)
@@ -49,7 +27,7 @@ def edit_watering(request, plant_id):
                 entry.delete()
 
             date = datetime.today()
-            days = data['watering']
+            days = int(watering)
             next_date = date + timedelta(days=days)
             notes = "Time to water"
             rec_date = next_date           
@@ -61,8 +39,13 @@ def edit_watering(request, plant_id):
                     entry_date=rec_date,
                 )
                 rec_date += timedelta(days=days)
+        return render(request, 'plantdetail.html', {'plant': plant, 'journal': journal})
 
-            return redirect('plant', kwargs={'plant_id': plant.id})
+class LibraryView(View):
+    def get(self, request):
+        library = Plant.objects.filter(owner=1)
+        return render(request, 'plantlibrary.html', {'library': library})
+        
 
 @login_required
 def alt_watering(request, plant_id):
@@ -107,6 +90,7 @@ def add_plant(request, plant_id):
         plant=new_plant
     )
     return HttpResponseRedirect(reverse('plant', kwargs={'plant_id': new_plant.id}))
+
 
 @login_required
 def remove_plant(request, plant_id):

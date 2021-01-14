@@ -8,8 +8,7 @@ from authentication.views import LoginView, LogoutView, SignUpView
 from plantcalendar.views import CalendarView, CreateCalEntry, remove_calendar_entry
 from journal.views import CreateEntryView, remove_entry
 from myuser.views import index_view, profile, edit_profile, delete_profile
-from indoorplants.views import PlantView, LibraryView, add_plant, remove_plant
-from indoorplants.views import edit_nickname, edit_watering, alt_watering
+from indoorplants.views import PlantView, LibraryView, add_plant, remove_plant, alt_watering
 
 
 urlpatterns = [
@@ -23,9 +22,7 @@ urlpatterns = [
     path('calendar/entry', CreateCalEntry.as_view(), name="calendar_entry"),
     path('calendar/edit/<int:entry_id>/', CreateCalEntry.as_view(), name="edit_entry"),
     path('delete_profile/<int:user_id>/', delete_profile, name='delete_profile'),
-    path('edit_nickname/<int:plant_id>/', edit_nickname, name='edit_nickname'),
     path('edit/<str:username>/', edit_profile, name='edit_profile'),
-    path('edit_watering/<int:plant_id>/', edit_watering, name='edit_watering'),
     path('journal_entry/<int:plant_id>/', CreateEntryView.as_view(), name='new_entry'),
     path('login/', LoginView.as_view(), name='login_page'),
     path('logout/', LogoutView.as_view(), name='logout_page'),
