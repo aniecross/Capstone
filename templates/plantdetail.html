@@ -22,6 +22,9 @@
                 <div class="card-body">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
+                            <h4>Common Name:  {{plant.planttype.common_name}}</h4>
+                        </li>
+                        <li class="list-group-item">
                             <h4>Sunlight Type:  {{plant.planttype.sunlight_type}}</h4>
                         </li>
                         <li class="list-group-item">
@@ -69,63 +72,80 @@
                     Remove plant from my profile
             </a>
         </div>
-        <form class="row g-3 card-body">
-            <div class="col-6">
+        <form class="card-body">
+            {% comment %} <div class="col-6">
                 <h3>Name: {{plant.nickname}}</h3>
             </div>
-            <div class="col-6">
-            <form method="post" action="" enctype="multipart/form-data">
-            {% csrf_token %} {{ form.as_p }}
-                <div class="input-group mb-3">
+            <div class="col-6"> {% endcomment %}
+            <form 
+                method="get" 
+                class="form-inline" 
+                action="{% url 'plant' plant.id %}" 
+                enctype="multipart/form-data"
+            >
+            {% csrf_token %} 
+                <div class="form-group">
+                    <label for="nickname"><h3>Name: {{plant.nickname}}</h3></label>
                     <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Change Plant Nickname"
-                    aria-label="Change Plant Nickname"
-                    aria-describedby="button-addon1"
+                        type="text"
+                        id="nickname"
+                        name="nickname"
+                        class="form-control"
+                        placeholder="Change Plant Nickname"
+                        aria-label="Change Plant Nickname"
+                        aria-describedby="button-addon1"
                     />
-                    <a
-                    class="btn btn-outline-light"
-                    style="background-color: #8f6479"
-                    role="button"
-                    id="button-addon1"
-                    href="/edit_nickname/{{plant.id}}/">
+                    <button
+                        class="btn btn-outline-light"
+                        style="background-color: #8f6479"
+                        type="submit"
+                        id="button-addon1"
+                    >
                         Submit
-                    </a>
+                    </button>
                 </div>
                 {% if errors %}
                 <a>{{ errors }}</a></br>
                 {% endif %}
             </form>
             </div>
-            <div class="col-8">
+            {% comment %} <div class="col-8">
                 <h4>My watering frequency: every {{plant.watering}} days</h4>
-            </div>
-            <div class="col-4">
-            <form method="post" action="" enctype="multipart/form-data">
-            {% csrf_token %} {{ form.as_p }}
-                <div class="input-group mb-3">
+            </div> {% endcomment %}
+            <div class="form-group">
+            <form 
+                method="get" 
+                class="form-inline" 
+                action="{% url 'plant' plant.id %}" 
+                enctype="multipart/form-data"
+            >
+             {% csrf_token %} 
+                <div class="form-group">
+                    <label for="watering"><h4>My watering frequency: every {{plant.watering}} days</h4></label>
                     <input
-                    type="number"
-                    class="form-control"
-                    placeholder="# of days"
-                    aria-label="# of days"
-                    aria-describedby="button-addon2"
+                        type="number"
+                        id="watering"
+                        name="watering"
+                        class="form-control"
+                        placeholder="# of days"
+                        aria-label="# of days"
+                        aria-describedby="button-addon2"
                     />
-                    <a
-                    class="btn btn-outline-light"
-                    type="submit"
-                    id="button-addon2"
-                    style="background-color: #8f6479"
-                    href="/edit_watering/{{plant.id}}/">
+                    <button
+                        class="btn btn-outline-light"
+                        type="submit"
+                        id="button-addon2"
+                        style="background-color: #8f6479"
+                    >
                         Submit
-                    </a>
+                    </button>
                 </div>
             {% if errors %}
-                <a>{{ errors }}</a></br>
+            <a>{{ errors }}</a></br>
             {% endif %}
             </form>
             </div>
+            {% if plant.watering %}
             <a
             class="btn btn-outline-light"
             style="background-color: #8f6479"
@@ -133,6 +153,7 @@
             role="button">
                 I watered this plant today!
             </a>
+            {% endif %}
             <br />
         </form>
     </div>

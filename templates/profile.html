@@ -59,16 +59,5 @@
 </div>
 </div>
 <br />
-{% comment %} this lists each plant that you have in your personal plants {% endcomment %}
-<ul>
-  {% for plant in my_user.myplants %}
-  <li>
-    <strong><a href="/plant/{{my_user.username}}/{{plant.plant_id}}/">
-      {{ plant }}
-    </a></strong>
-  </li>
-  <br />
-  {% endfor %}
-</ul>
 
 {% endblock %} {% endif %}
