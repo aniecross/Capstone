@@ -1,13 +1,10 @@
 from django import forms
 from indoorplants.models import Plant
 
-class EditNicknameForm(forms.ModelForm):
-    class Meta:
-        model = Plant
-        fields = ['nickname']
+class EditNicknameForm(forms.Form):
+    nickname = forms.CharField()
         
-class EditWateringForm(forms.ModelForm):
-    class Meta:
-        model = Plant
-        fields = ['watering']
+class EditWateringForm(forms.Form):
+    watering = forms.IntegerField()
+    
         

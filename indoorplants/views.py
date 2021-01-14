@@ -21,17 +21,18 @@ class LibraryView(View):
         library = Plant.objects.filter(owner=1)
         return render(request, 'plantlibrary.html', {'library': library})
         
-@login_required
+
 def edit_nickname(request, plant_id):
     plant = Plant.objects.get(id=plant_id)
-    if request.method == "POST":
-        form = EditNicknameForm(request.POST, instance=plant)
-        if form.is_valid():
-            data = form.cleaned_data
-            plant.nickname = data['nickname']
-            plant.save()
-
-        return HttpResponseRedirect(request.GET.get('next', reverse('plant', kwargs={'plant_id': plant.id})))
+    # if request.method == "POST":
+    #     form = EditNicknameForm(request.POST)
+    #     if form.is_valid():
+    nickname = request.GET.get('nickname')
+            # data = form.cleaned_data
+    plant.nickname = nickname
+    plant.save()
+    
+    return HttpResponseRedirect(request.GET.get('next', reverse('plant', kwargs={'plant_id': plant.id})))
 
 @login_required
 def edit_watering(request, plant_id):

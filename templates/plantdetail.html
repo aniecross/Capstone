@@ -22,6 +22,9 @@
                 <div class="card-body">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
+                            <h4>Common Name:  {{plant.planttype.common_name}}</h4>
+                        </li>
+                        <li class="list-group-item">
                             <h4>Sunlight Type:  {{plant.planttype.sunlight_type}}</h4>
                         </li>
                         <li class="list-group-item">
@@ -74,22 +77,25 @@
                 <h3>Name: {{plant.nickname}}</h3>
             </div>
             <div class="col-6">
-            <form method="post" action="" enctype="multipart/form-data">
-            {% csrf_token %} {{ form.as_p }}
+            <form method="post" action="{% url 'edit_nickname' plant.id %}" enctype="multipart/form-data">
+            {% csrf_token %} 
                 <div class="input-group mb-3">
                     <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Change Plant Nickname"
-                    aria-label="Change Plant Nickname"
-                    aria-describedby="button-addon1"
+                        type="text"
+                        name="nickname"
+                        class="form-control"
+                        placeholder="Change Plant Nickname"
+                        aria-label="Change Plant Nickname"
+                        aria-describedby="button-addon1"
                     />
                     <a
-                    class="btn btn-outline-light"
-                    style="background-color: #8f6479"
-                    role="button"
-                    id="button-addon1"
-                    href="/edit_nickname/{{plant.id}}/">
+                        class="btn btn-outline-light"
+                        style="background-color: #8f6479"
+                        role="button"
+                        type="submit"
+                        id="button-addon1"
+                        href="/edit_nickname/{{plant.id}}/"
+                    >
                         Submit
                     </a>
                 </div>
@@ -126,6 +132,7 @@
             {% endif %}
             </form>
             </div>
+            {% if plant.watering %}
             <a
             class="btn btn-outline-light"
             style="background-color: #8f6479"
@@ -133,6 +140,7 @@
             role="button">
                 I watered this plant today!
             </a>
+            {% endif %}
             <br />
         </form>
     </div>
