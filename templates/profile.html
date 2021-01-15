@@ -1,14 +1,23 @@
 {% extends 'base.html' %} {% if request.user.is_authenticated %} {% block content %} 
 {% comment %} this displays your personal info created at signup {% endcomment %}
 <br />
-<div class="card">
-  <div class="card-header row">
-    <h2 class="col-8">{{ my_user }} / {{ my_user.username }}</h2>
-    <div class="text-right col-4">
-      <button class="btn btn-lg btn-info" type="button">
-        <a style="color: white" href="/edit/{{my_user.username}}/">
+<div class="card mx-auto" style="max-width: 60rem">
+  <div class="card-header row" style="--bs-gutter-x: 0">
+    <h2 class="col-6">{{ my_user }} / {{ my_user.username }}</h2>
+    <div class="text-right col-6">
+      <button class="btn btn-lg" type="button" style="background-color: #8f6479">
+        <a style="color: white;" href="/edit/{{my_user.username}}/">
           Edit Login Details
         </a>
+      </button>
+      <!-- Button trigger modal -->
+      <button 
+        type="button" 
+        class="btn btn-lg btn-outline-danger" 
+        data-bs-toggle="modal" 
+        data-bs-target="#deleteModal"
+      >
+          Delete Profile
       </button>
     </div>
   </div>
@@ -20,15 +29,7 @@
     <h3 class="card-title">Password: ***</h3>
     <h3 class="card-title">Email: {{ my_user.email }}</h3>
   </div>
-<!-- Button trigger modal -->
-<button 
-  type="button" 
-  class="btn btn-lg btn-outline-danger" 
-  data-bs-toggle="modal" 
-  data-bs-target="#deleteModal"
->
-    Delete Profile
-</button>
+
 <!-- Modal -->
 <div 
   class="modal fade" 

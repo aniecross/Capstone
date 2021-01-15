@@ -8,96 +8,99 @@
     />
     {% include "bootstrap.partial" %}
   </head>
-  <body>
+  <body style="margin: 15px;">
     <br />
+    <div class="row">
+      <nav class="navbar-expand-lg col-2">
+        <div class="d-flex align-items-center">
+          <div
+            class="nav flex-column nav-tabs me-3"
+            aria-orientation="vertical"
+            style="background-color: #8f6479"
+          >
+            <img
+              src="{% static '/backgroundimages/plant_logo.jpeg' %}"
+              class="rounded"
+              alt="..."
+            />
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                style="color: white; font-family: copperplate, sans-serif;"
+                aria-current="page" 
+                href="/" 
+                >HOME</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                style="color: white; font-family: copperplate, sans-serif;"
+                href="/all_plants/"
+                >PLANT LIBRARY</a
+              >
+            </li>
+            {% if request.user.is_authenticated %}
+            <a
+              class="nav-link"
+              style="color: white; font-family: copperplate, sans-serif;"
+              href="{% url 'profile' request.user.username %}"
+              >ACCOUNT INFO</a
+            >
+            <a
+              class="nav-link"
+              style="color: white; font-family: copperplate, sans-serif;"
+              href="/calendar/"
+              >CALENDAR</a
+            >
+            <a
+              class="nav-link"
+              style="color: white; font-family: copperplate, sans-serif;"
+              href="{% url 'logout_page' %}"
+              >LOG OUT</a
+            >
+            {% else %}
+            <a
+              class="nav-link"
+              style="color: white; font-family: copperplate, sans-serif;"
+              href="{% url 'login_page' %}"
+              >LOG IN</a
+            >
+            <a
+              class="nav-link"
+              style="color: white; font-family: copperplate, sans-serif;"
+              href="/sign_up/"
+              >SIGN UP</a
+            >
+            {% endif %} {% if request.user.is_staff %}
+            <a
+              class="nav-link"
+              style="color: white; font-family: copperplate, sans-serif;"
+              href="/admin_site/"
+              >ADMIN PAGE</a
+            >
+            {% endif %}
+          </div>
+        </div>
+      </nav>
 
-    <nav class="float-left navbar-expand-lg">
-      <div class="d-flex align-items-center">
-        <div
-          class="nav flex-column nav-tabs me-3"
-          aria-orientation="vertical"
-          style="background-color: #8f6479"
-        >
-          <img
-            src="{% static '/backgroundimages/plant_logo.jpeg' %}"
-            class="rounded"
-            alt="..."
-          />
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              style="color: white;"
-              aria-current="page" 
-              href="/" 
-              >Home</a
-            >
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              style="color: white"
-              href="/all_plants/"
-              >Plant Library</a
-            >
-          </li>
-          {% if request.user.is_authenticated %}
-          <a
-            class="nav-link"
-            style="color: white"
-            href="{% url 'profile' request.user.username %}"
-            >Account Info</a
-          >
-          <a
-            class="nav-link"
-            style="color: white"
-            href="/calendar/"
-            >Calendar</a
-          >
-          <a
-            class="nav-link"
-            style="color: white"
-            href="{% url 'logout_page' %}"
-            >LOG OUT</a
-          >
-          {% else %}
-          <a
-            class="nav-link"
-            style="color: white"
-            href="{% url 'login_page' %}"
-            >LOG IN</a
-          >
-          <a
-            class="nav-link"
-            style="color: white"
-            href="/sign_up/"
-            >Sign Up</a
-          >
-          {% endif %} {% if request.user.is_staff %}
-          <a
-            class="nav-link"
-            style="color: white"
-            href="/admin_site/"
-            >Admin Page</a
-          >
-          {% endif %}
+
+      <div class="col-10" style="padding: 25px">
+      {% if request.user.is_authenticated %}
+      <br />
+        <div class="text-center">
+          <h2 style="color: #dbd5a4; text-shadow: 1px 1px 0 #444">
+            Welcome {{ request.user.first_name }}!
+          </h2>
+        </div>
+        {% endif %}
+        <div class="float-right">
+            <img href="{% static '/backgroundimages/hanging-plant3.png' %}">
+        </div>
+        <div class="mx-auto">
+          {% block content %} {% endblock %}
         </div>
       </div>
-    </nav>
-
-
-    {% if request.user.is_authenticated %}
-    <br />
-    <div class="d-flex float-right">
-      <h2 style="color: #dbd5a4; text-shadow: 1px 1px 0 #444">
-        Welcome {{ request.user.first_name }}!
-      </h2>
-    </div>
-    {% endif %}
-    <div class="float-right">
-        <img href="{% static '/backgroundimages/hanging-plant3.png' %}"
-    </div>
-    <div class="container d-flex flex-column justify-content-center">
-      {% block content %} {% endblock %}
     </div>
   </body>
 </html>

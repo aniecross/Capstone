@@ -20,50 +20,49 @@
     ></li>
   </ol>
   <div class="carousel-inner">
-    <div class="carousel-item active h-auto" data-bs-interval="3000">
+    <div class="carousel-item active" style="height: 300px" data-bs-interval="3000">
       <img
         src="{% static '/backgroundimages/plant_logo.jpeg' %}"
         class="d-block w-100 mx-auto"
         style="max-width: 500px"
         alt="..."
       />
-      <div class="carousel-caption d-none h-100 d-inline-block position-absolute">
-        <h5 style="color: black; font-size: 3.2rem">Welcome to</h5>
-        <div
-          class="position-absolute top-100 text-center overflow-visible"
-          style="color: black; font-size: 1.3rem"
-        >
+      <div class="carousel-caption d-none d-md-block">
+        <h3
+          class="top-100 text-center"
+          style="color: black; font-family: 'Lucida Handwriting', papyrus, fancy;"
+        > 
           A place to track your house plants care for optimal growth and health
-        </div>
+        </h3> 
       </div>
     </div>
-    <div class="carousel-item h-auto" data-bs-interval="11000">
+    <div class="carousel-item h-auto potition-relative" data-bs-interval="11000">
       <img
         src="{% static '/backgroundimages/house-plants1.png' %}"
         class="d-block w-100 mx-auto"
-        style="max-width: 600px"
+        style="max-width: 600px; opacity: 0.6;"
         alt="..."
       />
-      <div class="carousel-caption d-none d-md-block">
-        <p style="color: black; font-size: 1.4rem">
+      <div class="carousel-caption d-none d-md-block position-absolute top-0">
+        <h4 style="color: black; font-family: 'Lucida Handwriting', papyrus, fancy;" >
           Just find your house plant from our plant library and add it to your
           profile. You will be able to set a watering schedule and journal any
           observations you have to help you have the healthiest plants possible
           after all ...
-        </p>
+        </h4>
       </div>
     </div>
-    <div class="carousel-item" data-bs-interval="5000">
+    <div class="carousel-item" style="height: 420px" data-bs-interval="5000">
       <img
         src="{% static '/backgroundimages/plant_logo_7.jpg' %}"
         class="d-block w-100 mx-auto"
-        style="max-width: 500px"
+        style="max-width: 480px"
         alt="..."
       />
       <div class="carousel-caption d-none d-md-block">
-        <h5 style="color: black">
-          "Plants gives us oxygen for the lungs and for the soul."~LSolegato
-        </h5>
+        <h3 style="color: black; font-family: 'Lucida Handwriting', papyrus, fancy;">
+          "Plants give us oxygen for the lungs and for the soul." ~L.Solegato
+        </h3>
       </div>
     </div>
     <a
@@ -90,8 +89,37 @@
 <br />
 {% comment %} displays personal plants if logged in {% endcomment %} 
 {% if request.user.is_authenticated %}
-<div class="d-block">
-  <h1>My Plants</h1>
+<div class="mx-auto">
+    <h1 
+      style="color: #8f6479; font-family: copperplate, sans-serif;"
+      class="text-center"
+    >
+      Todays reminders...
+    </h1>
+    <br />
+    {% if list_for_today %} 
+    <div class="row mx-auto">
+      {% for entry in list_for_today %} 
+      <div class="col border border-secondary" style="padding: 7px; margin: 4px">
+        {% if entry.plant.nickname %}
+          <h4 class="d-inline">{{ entry.plant.nickname }}:</h4>
+        {% else %}
+          <h4 class="d-inline">{{ entry.plant.planttype.common_name }}:</h4>
+        {% endif %}
+        <h4 class="d-inline text-wrap">{{ entry.notes }}</h4>
+      </div>
+      {% endfor %}
+    </div> 
+    {% else %}
+    <h4>There is nothing to water today! Enjoy the day!</h4>
+    {% endif %}
+    </div>
+  </div>
+<br/>
+<div class="d-block mx-auto">
+  <h1 style="font-family: copperplate, sans-serif;" class="text-center">
+    My Plants
+  </h1>
   <div class="row">
     {% for plant in plants %}
     <div class="col-sm-3" style="padding: 1.5rem">
@@ -107,14 +135,21 @@
         >
           <strong><a href="/plant/{{plant.id}}/" style="color: #778F48">
             {% if plant.planttype.common_name %} 
-            {{ plant.planttype.common_name }} {% else %} {{ plant }} {% endif %}
+              {{ plant.planttype.common_name }} 
+            {% else %} 
+              {{ plant }} 
+            {% endif %}
           </a></strong>
-          <span style="font-size: large">
-            {% if plant.nickname %} {{ plant.nickname }} {% endif %}
-          </span>
+          <div style="font-size: large">
+            {% if plant.nickname %} 
+              {{ plant.nickname }} 
+            {% endif %}
+          </div>
           <br />
           <p class="card-text">
-            {% if j_entries.plant == plant %} {{ j_entries.text }} {% endif %}
+            {% if j_entries.plant == plant %} 
+              {{ j_entries.text }}
+            {% endif %}
           </p>
         </div>
       </div>
@@ -122,27 +157,6 @@
     <br />
     {% endfor %}
   </div>
-
-  <br />
-  <div class="float-left">
-    <h3>Todays plants that need water:</h3>
-    <br />
-    {% if list_for_today %} 
-      {% for entry in list_for_today %} 
-        {% if entry.plant.nickname %}
-          <h4>{{ entry.plant.nickname }}:</h4>
-          {% elif entry.plant.planttype.common_name %}
-          <h4>{{ entry.plant.planttype.common_name }}:</h4>
-          {% else %}
-          <h4>{{ entry.plant.planttype.name }}:</h4>
-        {% endif %}
-      <h4>{{ entry.notes }}</h4>
-      {% endfor %} 
-    {% else %}
-    <h4>There is nothing to water today! Enjoy the day!</h4>
-    {% endif %}
-  </div>
-
   {% endif %}
 </div>
 {% endblock %}

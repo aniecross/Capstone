@@ -3,16 +3,36 @@
 {% load static %}
 <br />
 <br />
-<div class="clearfix">
-  <a class="btn btn-outline-dark left" style="background-color: #778F48;" href="{% url 'calendar_entry' %}">
-    Create Calendar Entry
-  </a>
-  <a class="btn btn-outline-dark left" style="background-color: #778F48;" href="{% url 'calendar' %}?{{ prev_month }}">
-    Previous Month
-  </a>
-  <a class="btn btn-outline-dark right" style="background-color: #778F48;" href="{% url 'calendar' %}?{{ next_month }}">
-    Next Month
-  </a>
+<div class="container">
+  <div class="row justify-content-between">
+    <div class="col-3">
+      <a 
+        class="btn btn-outline-dark" 
+        style="background-color: #778F48;" 
+        href="{% url 'calendar' %}?{{ prev_month }}"
+      >
+        Previous Month
+      </a>
+    </div>
+    <div class="col-md-auto">
+      <a 
+        class="btn btn-outline-dark" 
+        style="background-color: #778F48;" 
+        href="{% url 'calendar_entry' %}"
+      >
+        Create Calendar Entry
+      </a>
+    </div>
+    <div class="col-3">
+      <a 
+        class="btn btn-outline-dark float-end" 
+        style="background-color: #778F48;" 
+        href="{% url 'calendar' %}?{{ next_month }}"
+      >
+        Next Month
+      </a>
+    </div>
+  </div>
 </div>
 <br />
 <br />
