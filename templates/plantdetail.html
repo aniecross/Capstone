@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% block content %} 
 {% comment %} to display plant type details {% endcomment %}
 <div class="mx-auto">
-    <div class="card" style="width: 55rem;">
+    <div class="card" style="width: 60rem;">
         <div class="row" style="--bs-gutter-x: 0">
             <div class="card-header text-center">
                 <h1>Plant Details</h1>
@@ -62,7 +62,7 @@
     <br/>
     {% comment %} if this is a personal plant display... {% endcomment %} 
     {% if plant.owner.username != 'admin' %}
-    <div class="card" style="width: 48rem">
+    <div class="card" style="width: 50rem">
         <div class="card-header text-center">
             <h1>My Plant</h1>
             <a
@@ -72,11 +72,7 @@
                     Remove plant from my profile
             </a>
         </div>
-        <form class="card-body">
-            {% comment %} <div class="col-6">
-                <h3>Name: {{plant.nickname}}</h3>
-            </div>
-            <div class="col-6"> {% endcomment %}
+        <div class="card-body mx-auto">
             <form 
                 method="get" 
                 class="form-inline" 
@@ -85,60 +81,70 @@
             >
             {% csrf_token %} 
                 <div class="form-group">
-                    <label for="nickname"><h3>Name: {{plant.nickname}}</h3></label>
-                    <input
-                        type="text"
-                        id="nickname"
-                        name="nickname"
-                        class="form-control"
-                        placeholder="Change Plant Nickname"
-                        aria-label="Change Plant Nickname"
-                        aria-describedby="button-addon1"
-                    />
-                    <button
-                        class="btn btn-outline-light"
-                        style="background-color: #8f6479"
-                        type="submit"
-                        id="button-addon1"
-                    >
-                        Submit
-                    </button>
+                    <label for="nickname">
+                        <h3>Name: {{plant.nickname}}</h3>
+                    </label>
+                    <div class="input-group mb-4">
+                        <input
+                            type="text"
+                            id="nickname"
+                            name="nickname"
+                            class="form-control"
+                            placeholder="Change Plant Nickname"
+                            aria-label="Change Plant Nickname"
+                            aria-describedby="button-addon1"
+                        />
+                        <button
+                            class="btn btn-outline-light btn-lg"
+                            style="background-color: #8f6479"
+                            type="submit"
+                            id="button-addon1"
+                        >
+                            Submit
+                        </button>
                 </div>
                 {% if errors %}
                 <a>{{ errors }}</a></br>
                 {% endif %}
             </form>
             </div>
-            {% comment %} <div class="col-8">
-                <h4>My watering frequency: every {{plant.watering}} days</h4>
-            </div> {% endcomment %}
-            <div class="form-group">
+            <div class="form-group text-center">
             <form 
                 method="get" 
-                class="form-inline" 
+                class="form-inline mx-auto" 
                 action="{% url 'plant' plant.id %}" 
                 enctype="multipart/form-data"
             >
              {% csrf_token %} 
-                <div class="form-group">
-                    <label for="watering"><h4>My watering frequency: every {{plant.watering}} days</h4></label>
-                    <input
-                        type="number"
-                        id="watering"
-                        name="watering"
-                        class="form-control"
-                        placeholder="# of days"
-                        aria-label="# of days"
-                        aria-describedby="button-addon2"
-                    />
-                    <button
-                        class="btn btn-outline-light"
-                        type="submit"
-                        id="button-addon2"
-                        style="background-color: #8f6479"
-                    >
-                        Submit
-                    </button>
+                <div class="form-group input-group">
+                    <label for="watering" class="" >
+                        <h3 style="color: #778F48">
+                            My watering frequency:  
+                        </h3>
+                        <h3>
+                             every {{plant.watering}} days
+                        </h3>
+                    </label>
+                    <span style="width: 40px"></span>
+                    <div class="input-group mb-4" style="width: 14rem;">
+                        <input
+                            type="number"
+                            id="watering"
+                            name="watering"
+                            class="form-control"
+                            placeholder="# of days"
+                            aria-label="# of days"
+                            aria-describedby="button-addon2"
+                        />
+                        <button
+                            class="btn btn-outline-light btn-lg"
+                            type="submit"
+                            id="button-addon2"
+                            style="background-color: #8f6479"
+                        >
+                            Submit
+                        </button>
+                    </div>
                 </div>
             {% if errors %}
             <a>{{ errors }}</a></br>
@@ -146,19 +152,22 @@
             </form>
             </div>
             {% if plant.watering %}
-            <a
-            class="btn btn-outline-light"
-            style="background-color: #8f6479"
-            href="/alt_watering/{{plant.id}}/"
-            role="button">
-                I watered this plant today!
-            </a>
+            <div class="mx-auto text-center">
+                <a
+                class="btn btn-outline-light btn-lg"
+                style="background-color: #8f6479"
+                href="/alt_watering/{{plant.id}}/"
+                role="button">
+                    I watered this plant today!
+                </a>
+            </div>
             {% endif %}
             <br />
-        </form>
+            </form>
+        </div>
     </div>
     <br />
-    <div class="card" style="width: 48rem">
+    <div class="card" style="width: 50rem">
         <div class="card-header text-center">
             <h1>My Plant Journal</h1>
             <div><a
@@ -170,7 +179,7 @@
             </div>
         </div>
         {% for entry in journal %}
-        <div class="card" style="width: 48rem">
+        <div class="card" style="width: 50rem">
             <div class="card-title">
                 <div class="row" style="--bs-gutter-x: 0">
                     <h5 

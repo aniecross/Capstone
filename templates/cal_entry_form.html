@@ -1,34 +1,56 @@
 {% extends 'base.html' %} 
 {% block title %} PlantCalendarEntry {% endblock %} 
 {% block content %}
-<div class="clearfix">
-  <a class="btn btn-info left" href="{% url 'calendar' %}"> Calendar </a>
+{% load static %}
+<br/>
+{% comment %} <div class="clearfix">
+  <img 
+    src="{% static '/backgroundimages/hanging-plant3.png' %}"
+    class="d-block w-100 float-right"
+    style="max-width: 280px"
+    alt="..."
+  > {% endcomment %}
 </div>
-<br />
-<h4>
-  Add notes to your calendar entries to remind you of things like ... add
-  fertilizer today, trim dead leaves, rotate to new window or water early (going
-  out of town) ... any notes added will show up in your daily reminders.
-</h4>
-<br />
-<form method="post">
-  {% csrf_token %}
-  <table class="form form-table">
-    {{ form }}
-    <tr>
-      <td colspan="2">
-        <button type="submit" class="btn btn-info right">Submit</button>
-      </td>
-    </tr>
-  </table>
-  {% if form.initial.id %}
-  <div>
-    <a
-      href="/remove_calendar_entry/{{form.instance.id}}/"
-      class="btn btn-danger"
-      >Remove Entry</a
-    >
-  </div>
-  {% endif %}
-</form>
+<div class="text-center">
+  <a 
+    class="btn btn-lg left text-center" 
+    style="background-color: #8f6479; color: white;" 
+    href="{% url 'calendar' %}"
+  > 
+    Back To Calendar 
+  </a>
+  <br />
+  <br/>
+  <h4 style="width: 800px" class="mx-auto">
+    Add notes to your calendar entries to remind you of things like ... add
+    fertilizer today, trim dead leaves, rotate to new window or water early (going
+    out of town) ... any notes added will show up in your daily reminders.
+  </h4>
+</div>
+  <br />
+<div class="mx-auto text-center">
+  <form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+      {{ form.as_p }}
+      <button 
+        type="submit" 
+        style="background-color: #8f6479; color: white;" 
+        class="btn btn-lg right"
+      >
+        Submit
+      </button>
+    </div>
+    <br/>
+    {% if form.initial.id %}
+    <div>
+      <a
+        href="/remove_calendar_entry/{{form.instance.id}}/"
+        class="btn btn-danger"
+        >Remove Entry</a
+      >
+    </div>
+    {% endif %}
+  </form>
+</div>
 {% endblock %}
