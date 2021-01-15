@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% block content %} 
 {% comment %} to display plant type details {% endcomment %}
 <div class="mx-auto">
-    <div class="card" style="width: 60rem;">
+    <div class="card mx-auto" style="width: 60rem;">
         <div class="row" style="--bs-gutter-x: 0">
             <div class="card-header text-center">
                 <h1>Plant Details</h1>
@@ -51,7 +51,10 @@
                         href="/add_plant/{{plant.id}}/"
                         class="btn  btn-lg btn-outline-light"
                         style="background-color: #8f6479"
-                        >Add plant to my profile</a
+                        ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currnetColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                          </svg> Add plant to my profile</a
                         >
                     </div>
                     {% endif %} 
@@ -62,14 +65,17 @@
     <br/>
     {% comment %} if this is a personal plant display... {% endcomment %} 
     {% if plant.owner.username != 'admin' %}
-    <div class="card" style="width: 50rem">
+    <div class="card mx-auto" style="width: 50rem">
         <div class="card-header text-center">
             <h1>My Plant</h1>
             <a
                 href="/remove_plant/{{plant.id}}/"
                 class="btn btn-outline-light"
                 style="background-color: #8f6479">
-                    Remove plant from my profile
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-dash-circle" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                    <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
+                  </svg> Remove plant from my profile
             </a>
         </div>
         <div class="card-body mx-auto">
@@ -158,7 +164,9 @@
                 style="background-color: #8f6479"
                 href="/alt_watering/{{plant.id}}/"
                 role="button">
-                    I watered this plant today!
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="blue" class="bi bi-droplet-fill" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8 16a6 6 0 0 0 6-6c0-1.655-1.122-2.904-2.432-4.362C10.254 4.176 8.75 2.503 8 0c0 0-6 5.686-6 10a6 6 0 0 0 6 6zM6.646 4.646c-.376.377-1.272 1.489-2.093 3.13l.894.448c.78-1.559 1.616-2.58 1.907-2.87l-.708-.708z"/>
+                  </svg> I watered this plant today!
                 </a>
             </div>
             {% endif %}
@@ -167,14 +175,17 @@
         </div>
     </div>
     <br />
-    <div class="card" style="width: 50rem">
+    <div class="card mx-auto" style="width: 50rem">
         <div class="card-header text-center">
             <h1>My Plant Journal</h1>
             <div><a
                 class="btn btn-outline-light"
                 style="background-color: #8f6479"
                 href="{% url 'new_entry' plant.id %}">
-                    Create Journal Entry
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                  </svg> Create Journal Entry
                 </a>
             </div>
         </div>
@@ -191,7 +202,9 @@
                         href="/remove_entry/{{entry.id}}/"
                         class="btn btn-outline-danger col-1"
                         style="">
-                            X
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                            <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                          </svg>
                     </a>
                 </div>
             </div>
