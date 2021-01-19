@@ -1,5 +1,5 @@
 {
-    "python.pythonPath": "/Users/aniecross/.local/share/virtualenvs/capstone-dNfH1Hhh/bin/python",
+    "python.pythonPath": "/Users/bethshebazebata/.pyenv/versions/3.8.5/bin/python",
     "python.linting.flake8Enabled": true,
     "python.linting.pylintEnabled": false,
     "python.linting.enabled": true,
