@@ -2,14 +2,19 @@
 {% block content %}
 
 <div class="container">
-  <form method="post" action="" enctype="multipart/form-data">
-    {% csrf_token %} {{ form.as_p }}
-    <input type="submit" value="SUBMIT" />
-    <br>
-  {% if errors %}
-    <a>{{ errors }}</a></br>
-  {% endif %}
-  </form>
+  <div>
+    <form method="post" action="" enctype="multipart/form-data">
+      {% csrf_token %} {{ form.as_p }}
+      <input type="submit" value="SUBMIT" />
+      <br>
+    {% if errors %}
+      <a>{{ errors }}</a></br>
+    {% endif %}
+    </form>
+    <div class="float-right">
+      <img href="{% static '/backgroundimages/hanging-plant3.png' %}">
+    </div>
+  </div>
 </div>
 
 {% endblock %}
