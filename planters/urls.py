@@ -4,7 +4,7 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 
-from authentication.views import LoginView, LogoutView, SignUpView 
+from authentication.views import LoginView, LogoutView, SignUpView, about
 from plantcalendar.views import CalendarView, CreateCalEntry, remove_calendar_entry
 from journal.views import CreateEntryView, remove_entry
 from myuser.views import index_view, profile, edit_profile, delete_profile
@@ -31,6 +31,7 @@ urlpatterns = [
     path('remove_entry/<int:entry_id>/', remove_entry, name='remove_entry'),
     path('remove_plant/<int:plant_id>/', remove_plant, name='remove_plant'),
     path('sign_up/', SignUpView.as_view(), name='sign_up'),
+    path('about/', about, name="about")
 
 ]  + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
