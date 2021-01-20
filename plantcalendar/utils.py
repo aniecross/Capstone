@@ -19,7 +19,7 @@ class Calendar(calendar.HTMLCalendar):
         d = ''
         w = ''
         for entry in plants_to_water:
-            w += f'<li>water~{entry} </li>'
+            w += f'<li>water~{entry.get_html_url} </li>'
         for entry in cal_entry_list:
             d += f'<li> {entry.get_html_url} </li>'
             

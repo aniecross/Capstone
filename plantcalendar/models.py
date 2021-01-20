@@ -22,10 +22,9 @@ class PlantCalendarEntry(models.Model):
         url = reverse('edit_entry', args=(self.id,))
         if self.plant.nickname:
             return f'<a href="{url}" style="color: #8f6479">{self.plant.nickname}</a>'
-        elif self.plant.planttype.common_name:
-            return f'<a href="{url}" style="color: #8f6479">{self.plant.planttype.common_name}</a>'
         else:
-            return f'<a href="{url}" style="color: #8f6479">{self.plant}</a>'
+            return f'<a href="{url}" style="color: #8f6479">{self.plant.planttype.common_name}</a>'
+        
 
 
 class PlantWateringEntry(models.Model):
@@ -39,5 +38,14 @@ class PlantWateringEntry(models.Model):
             return self.plant.nickname
         else:
             return self.plant.planttype.common_name
+
+    @property
+    def get_html_url(self):
+        url = reverse('plant', args=(self.plant.id,))
+        if self.plant.nickname:
+            return f'<a href="{url}" style="color: #778F48">{self.plant.nickname}</a>'
+        else:
+            return f'<a href="{url}" style="color: #778F48">{self.plant.planttype.common_name}</a>'
+       
 
     
