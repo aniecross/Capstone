@@ -4,7 +4,7 @@
     <div class="card mx-auto" style="width: 60rem;">
         <div class="row" style="--bs-gutter-x: 0">
             <div class="card-header text-center">
-                <h1>Plant Details</h1>
+                <h1 style="font-family: copperplate, sans-serif;">Plant Details</h1>
                 <strong><h2 style="color: #778F48">{{ plant.planttype.name }}</h2></strong>
             </div>
         </div>
@@ -67,7 +67,7 @@
     {% if plant.owner.username != 'admin' %}
     <div class="card mx-auto" style="width: 50rem">
         <div class="card-header text-center">
-            <h1>My Plant</h1>
+            <h1 style="font-family: copperplate, sans-serif;">My Plant</h1>
             <a
                 href="/remove_plant/{{plant.id}}/"
                 class="btn btn-outline-light"
@@ -88,7 +88,10 @@
             {% csrf_token %} 
                 <div class="form-group">
                     <label for="nickname">
-                        <h3>Name: {{plant.nickname}}</h3>
+                        <h3 style="color:#778F48" class="d-inline">
+                            Name:
+                        </h3>
+                        <h3 class="d-inline">{{plant.nickname}}</h3>
                     </label>
                     <div class="input-group mb-4">
                         <input
@@ -177,7 +180,7 @@
     <br />
     <div class="card mx-auto" style="width: 50rem">
         <div class="card-header text-center">
-            <h1>My Plant Journal</h1>
+            <h1 style="font-family: copperplate, sans-serif;">Journal</h1>
             <div><a
                 class="btn btn-outline-light"
                 style="background-color: #8f6479"
@@ -215,11 +218,13 @@
                     class="img-thumbnail rounded float-start"
                     style="max-width: 12rem"
                 />
-                <div class="text-center float-right">
+                <div class="text-center float-right" style="font-family: 'Lucida Handwriting', papyrus, fancy">
                     "{{entry.text}}"
                 </div>
                 {% else %}
+                <div class="text-center float-right" style="font-family: 'Lucida Handwriting', papyrus, fancy">
                 "{{entry.text}}"
+                </div>
                 {% endif %}
             </div>
         </div>
