@@ -1,6 +1,5 @@
 from indoorplants.models import PlantType, Plant
 from myuser.models import MyUser
-# from django.core.management.base import BaseCommand
 
 
 def generate_data_planttype():
@@ -8,7 +7,7 @@ def generate_data_planttype():
     {
     "name":'Pothos',
     "common_name":'Pothos',
-    "photo":'images/pothos.jpg',
+    "photo":'images/pothos1.jpg',
     'sunlight_type':'Indirect',
     'water_freq':'7-10 days',
     'soil_type':'well draining',
@@ -28,7 +27,7 @@ def generate_data_planttype():
     'notes':'When watering place the plant in a bowl of water for about 2 hours.',
     },
     {
-    'name':'Chlorophytum comosum',
+    'name':'Chlorophytum Comosum',
     'common_name':'Spider Plants',
     'photo':'images/spider-plant.jpg',
     'sunlight_type':'Indirect',
@@ -50,7 +49,7 @@ def generate_data_planttype():
     'notes':'water when soil is dry to touch',
     },
     {
-    'name':'CRASSULA ovata',
+    'name':'Crassula Ovata',
     'common_name':'Jade Plant',
     'photo':'images/jade-plant.jpg',
     'sunlight_type':'Direct',
@@ -61,7 +60,7 @@ def generate_data_planttype():
     'notes':'',
     },
     {
-    'name':'Asparagus setaceus',
+    'name':'Asparagus Setaceus',
     'common_name':'Asparagus Fern',
     'photo':'images/Asparagus-fern.jpg',
     'sunlight_type':'Indirect',
@@ -72,7 +71,7 @@ def generate_data_planttype():
     'notes':'For a heathy plant mist leaves with water daily',
     },
     {
-    'name':'Pilea peperomioides',
+    'name':'Pilea Peperomioides',
     'common_name':'Chinese Money Plant',
     'photo':'images/money-plant.jpg',
     'sunlight_type':'Indirect',
@@ -83,7 +82,7 @@ def generate_data_planttype():
     'notes':'Do not let soil completely dry out',
     },
     {
-    'name':'SPATHIPHYLLUM',
+    'name':'Spathiphyllum',
     'common_name':'Peace Lily',
     'photo':'images/Peace-Lily.jpeg',
     'sunlight_type':'Indirect',
@@ -105,7 +104,7 @@ def generate_data_planttype():
     'notes':'Do not overwater, wait until the top third of the soil is completely dry.',
     },
     {
-    'name':'Hedera helix',
+    'name':'Hedera Helix',
     'common_name':'English Ivy',
     'photo':'images/english-ivy.jpg',
     'sunlight_type':'Indirect',
@@ -127,9 +126,9 @@ def generate_data_planttype():
     'notes':'Test the top third of the soil before water. If it is dry then you can water it.',
     },
     {
-    'name':'Calathea zebrina',
+    'name':'Calathea Zebrina',
     'common_name':'Zebra Plant',
-    'photo':'images/Zebra-Plant.jpg',
+    'photo':'images/Zebra-Plant1.jpg',
     'sunlight_type':'Indirect',
     'water_freq':'7-10 days',
     'soil_type':'moisture retaining',
@@ -160,7 +159,7 @@ def generate_data_planttype():
     'notes':'In the winter months you may not need to water as often.',
     },
     {
-    'name':'Beaucarnea recurvata',
+    'name':'Beaucarnea Recurvata',
     'common_name':'Ponytail Palm',
     'photo':'images/Ponytail.jpg',
     'sunlight_type':'Indirect',
@@ -182,7 +181,7 @@ def generate_data_planttype():
     'notes':'',
     },
     {
-    'name':'Euphorbia milii',
+    'name':'Euphorbia Milii',
     'common_name':'Crown of Thorns',
     'photo':'images/crown-of-thrones.jpg',
     'sunlight_type':'Indirect',
@@ -193,7 +192,7 @@ def generate_data_planttype():
     'notes':'Make sure it is getting plenty of indrect sunlight',
     },
     {
-    'name':'Schlumbergera bridgessii',
+    'name':'Schlumbergera Bridgessii',
     'common_name':'Christmas Cactus',
     'photo':'images/Christmas-Cactus.jpg',
     'sunlight_type':'Indirect',
@@ -204,7 +203,7 @@ def generate_data_planttype():
     'notes':'',
     },
     {
-    'name':'Zamioculcas zamiifolia',
+    'name':'Zamioculcas Zamiifolia',
     'common_name':'ZZ Plant',
     'photo':'images/zz-plant.jpg',
     'sunlight_type':'Indirect',
@@ -248,7 +247,7 @@ def generate_data_planttype():
     'notes':'Only water once soil throughout the pot is completely dry.',
     },
     {
-    'name':'Dracaena trifasciata',
+    'name':'Dracaena Trifasciata',
     'common_name':'Snake Plant',
     'photo':'images/snake-plant.jpeg',
     'sunlight_type':'Indirect',
@@ -259,7 +258,7 @@ def generate_data_planttype():
     'notes':'',
     },
     {
-    'name':'Ficus elastic',
+    'name':'Ficus Elastic',
     'common_name':'Rubber Plant',
     'photo':'images/rubber-plant.jpg',
     'sunlight_type':'Indirect',
@@ -270,7 +269,7 @@ def generate_data_planttype():
     'notes':'',
     },
     {
-    'name':'Phalaenopsis spp',
+    'name':'Phalaenopsis Spp',
     'common_name':'Phalaenopsis Orchid',
     'photo':'images/phalaenopsis-orchid.jpg',
     'sunlight_type':'Indirect',
@@ -303,30 +302,30 @@ def generate_data_planttype():
 def generate_data_plant():
   # list the name of the plant type here
   plant_list = [
-    'Schlumbergera bridgessii',
-    'CRASSULA ovata',
-    'Air Plants',
-    'Chlorophytum comosum',
-    'Bromeliad',
-    'SPATHIPHYLLUM',
-    'Asparagus setaceus',
-    'Dracaena trifasciata',
-    'Aloe Vera',
-    'Hedera helix',
-    'Calathea zebrina',
     'Pothos',
-    'Euphorbia milii',
-    'Schefflera',
+    'Schlumbergera Bridgessii', 
+    'Hedera Helix',
+    'Chlorophytum Comosum',
+    'Aloe Vera',
+    'Air Plants',
+    'Crassula Ovata',
+    'Calathea Zebrina',
     'Aglaonema',
-    'Pilea peperomioides',
-    'Beaucarnea recurvata',
+    'Asparagus Setaceus',
+    'Euphorbia Milii',
+    'Dracaena Trifasciata',
+    'Schefflera',
+    'Pilea Peperomioides',
+    'Spathiphyllum',
+    'Beaucarnea Recurvata',
+    'Zamioculcas Zamiifolia',
+    'Kalanchoe',
+    'Bromeliad',
     'Philodendron',
-    'Zamioculcas zamiifolia',
     'Dieffenbachia',
     'Yucca',
-    'Phalaenopsis spp',
-    'Ficus elastic',
-    'Kalanchoe',
+    'Ficus Elastic',
+    'Phalaenopsis Spp'
     ]
   for plant in plant_list:
       try:

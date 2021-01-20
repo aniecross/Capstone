@@ -1,4 +1,3 @@
-# from plantcalendar import views
 from django.contrib import admin
 from django.urls import path
 from django.conf import settings
@@ -13,6 +12,7 @@ from indoorplants.views import PlantView, LibraryView, add_plant, remove_plant, 
 
 urlpatterns = [
     path('', index_view, name="homepage"),
+    path('about/', about, name="about"),
     path('accounts/<str:username>/', profile, name='profile'),
     path('add_plant/<int:plant_id>/', add_plant, name='add_plant'),
     path('admin_site/', admin.site.urls),
@@ -31,7 +31,6 @@ urlpatterns = [
     path('remove_entry/<int:entry_id>/', remove_entry, name='remove_entry'),
     path('remove_plant/<int:plant_id>/', remove_plant, name='remove_plant'),
     path('sign_up/', SignUpView.as_view(), name='sign_up'),
-    path('about/', about, name="about")
 
 ]  + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

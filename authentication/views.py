@@ -37,22 +37,24 @@ class SignUpView(View):
     form_class = SignUpForm
     def get(self, request):
         form = self.form_class()
-        return render(request, 'generic_form.html', {'form': form})
+        return render(request, 'generic_form.html', {'form': form, 'errors': None})
         
     def post(self, request):    
         form = self.form_class(request.POST)
         if form.is_valid():
             data = form.cleaned_data
-            MyUser.objects.create_user(
-                username=data['username'], password=data['password'], email=data['email'],
-                first_name=data['first_name'], last_name=data['last_name']
-            )
-            user = authenticate(
-                request, username=data['username'], password=data['password'])
-            if user:
-                login(request, user)
-                return HttpResponseRedirect(request.GET.get('next', reverse('homepage')))
-
+            try:
+                MyUser.objects.create_user(
+                    username=data['username'], password=data['password'], email=data['email'],
+                    first_name=data['first_name'], last_name=data['last_name']
+                )
+                user = authenticate(
+                    request, username=data['username'], password=data['password'])
+                if user:
+                    login(request, user)
+                    return HttpResponseRedirect(request.GET.get('next', reverse('homepage')))
+            except:
+                return render(request, "generic_form.html", {'form': form, 'errors':'Username already taken. Please choose a different username.'})
 
 def page_not_found(request, exception):
 
