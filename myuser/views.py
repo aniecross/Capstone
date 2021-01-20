@@ -28,6 +28,7 @@ def index_view(request):
         my_user = MyUser.objects.filter(username='admin').first()
         plants = ''
         entry_list = None
+        w_entry_list = None
     return render(request, 'index.html', {'my_user': my_user, 'plants': plants, 'list_for_today': entry_list, 'w_entry_list':w_entry_list})
 
 
