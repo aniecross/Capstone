@@ -35,7 +35,6 @@ urlpatterns = [
 
 ]  + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
-     # https://www.youtube.com/watch?v=gsW5gYTNi34
 handler404 = 'authentication.views.page_not_found'
 handler500 = 'authentication.views.internal_server_error'
 
