@@ -90,34 +90,53 @@
 {% comment %} displays personal plants if logged in {% endcomment %} 
 {% if request.user.is_authenticated %}
 <div class="mx-auto">
-    <h1 
-      style="color: #8f6479; font-family: copperplate, sans-serif;"
-      class="text-center"
-    >
-      Todays reminders...
-    </h1>
-    <br />
-    {% if list_for_today %} 
-    <div class="row mx-auto">
-      {% for entry in list_for_today %} 
-      <div class="col border border-secondary" style="padding: 7px; margin: 4px">
-        {% if entry.plant.nickname %}
-          <h4 class="d-inline">{{ entry.plant.nickname }}:</h4>
-        {% else %}
-          <h4 class="d-inline">{{ entry.plant.planttype.common_name }}:</h4>
-        {% endif %}
-        <h4 class="d-inline text-wrap">{{ entry.notes }}</h4>
-      </div>
-      {% endfor %}
-    </div> 
-    {% else %}
-    <h4>There is nothing to water today! Enjoy the day!</h4>
-    {% endif %}
+  {% if list_for_today %} 
+  <h1 
+    style="color: #8f6479; font-family: copperplate, sans-serif;"
+    class="text-center"
+  >
+    Todays Reminders...
+  </h1>
+  <br />
+  <div class="row mx-auto">
+    {% for entry in list_for_today %} 
+    <div class="col border border-secondary" style="padding: 7px; margin: 4px; font-family: 'Lucida Handwriting', papyrus, fancy;">
+      {% if entry.plant.nickname %}
+        <h4 class="d-inline">{{ entry.plant.nickname }}:</h4>
+      {% else %}
+        <h4 class="d-inline">{{ entry.plant.planttype.common_name }}:</h4>
+      {% endif %}
+      <h4 class="d-inline text-wrap">{{ entry.notes }}</h4>
     </div>
+    {% endfor %}
   </div>
+    {% endif %}
+
+  {% if w_entry_list %}
+  <h1 
+    style="color: #8f6479; font-family: copperplate, sans-serif;"
+    class="text-center"
+  >
+    Todays Plants To Water...
+  </h1>
+  <div class="row mx-auto">
+    {% for entry in w_entry_list %} 
+    <div class="text-center" style="padding: 7px; margin: 4px; font-family: 'Lucida Handwriting', papyrus, fancy;">
+      {% if entry.plant.nickname %}
+        <h3 class="d-inline">{{ entry.plant.nickname }}</h3>
+      {% else %}
+        <h3 class="d-inline">{{ entry.plant.planttype.common_name }}</h3>
+      {% endif %}
+    </div>
+    {% endfor %}
+  {% else %}
+  <h4>There is nothing to water today! Enjoy the day!</h4>
+  {% endif %}
+  </div>
+ 
 <br/>
 <div class="d-block mx-auto">
-  <h1 style="font-family: copperplate, sans-serif;" class="text-center">
+  <h1 style="font-family: copperplate, sans-serif; color: #778F48;" class="text-center">
     My Plants
   </h1>
   <div class="row">

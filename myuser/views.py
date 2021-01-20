@@ -7,7 +7,7 @@ from authentication.forms import SignUpForm
 from myuser.models import MyUser
 from indoorplants.models import Plant, PlantType
 from indoorplants.bootstrap_data import generate_data_planttype, generate_data_plant
-from plantcalendar.models import PlantCalendarEntry
+from plantcalendar.models import PlantCalendarEntry, PlantWateringEntry
 from journal.models import Entry
 # Create your views here.
 
@@ -22,13 +22,14 @@ def index_view(request):
         today = datetime.today()
         cal_entries = PlantCalendarEntry.objects.filter(owner=my_user)
         entry_list = cal_entries.filter(entry_date=today)
-        j_entries = Entry.objects.filter(author=my_user)
+        w_entries = PlantWateringEntry.objects.filter(owner=my_user)
+        w_entry_list = w_entries.filter(entry_date=today)
     else:
         my_user = MyUser.objects.filter(username='admin').first()
         plants = ''
         entry_list = None
-        j_entries = None
-    return render(request, 'index.html', {'my_user': my_user, 'plants': plants, 'list_for_today': entry_list, 'j_entries': j_entries})
+        w_entry_list = None
+    return render(request, 'index.html', {'my_user': my_user, 'plants': plants, 'list_for_today': entry_list, 'w_entry_list': w_entry_list})
 
 
 @login_required()
