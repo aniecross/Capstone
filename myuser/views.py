@@ -14,6 +14,7 @@ from journal.models import Entry
 def index_view(request):
     if not PlantType.objects.all():
         generate_data_planttype()
+    if not Plant.objects.filter(owner=1):
         generate_data_plant()
     if request.user.is_authenticated:
         my_user = MyUser.objects.filter(username=request.user.username).first()

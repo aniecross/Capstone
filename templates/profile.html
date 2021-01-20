@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% if request.user.is_authenticated %} {% block content %} 
 {% comment %} this displays your personal info created at signup {% endcomment %}
 <br />
-<div class="card mx-auto" style="max-width: 60rem">
+<div class="card mx-auto" style="max-width: 52rem">
   <div class="card-header row" style="--bs-gutter-x: 0">
     <h2 class="col-6">{{ my_user }} / {{ my_user.username }}</h2>
     <div class="text-right col-6">
@@ -10,7 +10,7 @@
           Edit Login Details
         </a>
       </button>
-      <!-- Button trigger modal -->
+      {% comment %} Button to trigger modal {% endcomment %}
       <button 
         type="button" 
         class="btn btn-lg btn-outline-danger" 
@@ -30,7 +30,7 @@
     <h3 class="card-title">Email: {{ my_user.email }}</h3>
   </div>
 
-<!-- Modal -->
+{% comment %} Modal {% endcomment %}
 <div 
   class="modal fade" 
   id="deleteModal" 
@@ -49,7 +49,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Don't Delete</button>
-        <button type="button" class="btn btn-lg btn-danger">
+        <button type="button" class="btn btn-danger">
           <a href="/delete_profile/{{request.user.id}}/" class="text-light">
             Delete Profile
           </a>

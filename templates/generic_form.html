@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
+{% load static %}
 
-<div class="container">
-  <div>
+<div class="container mx-auto" style="padding: 60px;">
+  <div class="float-start">
     <form method="post" action="" enctype="multipart/form-data">
       {% csrf_token %} {{ form.as_p }}
       <input type="submit" value="SUBMIT" />
@@ -11,9 +12,12 @@
       <a>{{ errors }}</a></br>
     {% endif %}
     </form>
-    <div class="float-right">
-      <img href="{% static '/backgroundimages/hanging-plant3.png' %}">
-    </div>
+  </div>
+  <div class="float-end">
+    <img 
+      src="{% static '/backgroundimages/hanging-plant3.png' %}"
+      style="height: 400px"  
+    >
   </div>
 </div>
 

@@ -32,11 +32,11 @@
           class="top-100 text-center"
           style="color: black; font-family: 'Lucida Handwriting', papyrus, fancy;"
         > 
-          A place to track your house plants care for optimal growth and health
+          A place to track your house plants care routine for optimal growth and health
         </h3> 
       </div>
     </div>
-    <div class="carousel-item h-auto potition-relative" data-bs-interval="11000">
+    <div class="carousel-item h-auto potition-relative" data-bs-interval="15000">
       <img
         src="{% static '/backgroundimages/house-plants1.png' %}"
         class="d-block w-100 mx-auto"
@@ -46,7 +46,7 @@
       <div class="carousel-caption d-none d-md-block position-absolute top-0">
         <h4 style="color: black; font-family: 'Lucida Handwriting', papyrus, fancy;" >
           Just find your house plant from our plant library and add it to your
-          profile. You will be able to set a watering schedule and journal any
+          profile. You will be able to set a watering schedule, and journal any
           observations you have to help you have the healthiest plants possible
           after all ...
         </h4>
@@ -60,9 +60,9 @@
         alt="..."
       />
       <div class="carousel-caption d-none d-md-block">
-        <h3 style="color: black; font-family: 'Lucida Handwriting', papyrus, fancy;">
+        <h4 style="color: black; font-family: 'Lucida Handwriting', papyrus, fancy;">
           "Plants give us oxygen for the lungs and for the soul." ~L.Solegato
-        </h3>
+        </h4>
       </div>
     </div>
     <a
@@ -122,8 +122,8 @@
   </h1>
   <div class="row">
     {% for plant in plants %}
-    <div class="col-sm-3" style="padding: 1.5rem">
-      <div class="card" style="margin-right: 10px; width: 15rem">
+    <div class="col-sm-4" style="padding: 1.5rem">
+      <div class="card" style="margin-right: 10px; width: 18rem">
         <img
           src="{{ plant.planttype.photo.url }}"
           class="img-thumbnail card-img-top"
@@ -140,17 +140,12 @@
               {{ plant }} 
             {% endif %}
           </a></strong>
-          <div style="font-size: large">
+          <div style="font-size: x-large">
             {% if plant.nickname %} 
               {{ plant.nickname }} 
             {% endif %}
           </div>
           <br />
-          <p class="card-text">
-            {% if j_entries.plant == plant %} 
-              {{ j_entries.text }}
-            {% endif %}
-          </p>
         </div>
       </div>
     </div>
