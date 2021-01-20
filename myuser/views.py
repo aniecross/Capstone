@@ -29,11 +29,7 @@ def index_view(request):
         plants = ''
         entry_list = None
         w_entry_list = None
-<<<<<<< HEAD
     return render(request, 'index.html', {'my_user': my_user, 'plants': plants, 'list_for_today': entry_list, 'w_entry_list': w_entry_list})
-=======
-    return render(request, 'index.html', {'my_user': my_user, 'plants': plants, 'list_for_today': entry_list, 'w_entry_list':w_entry_list})
->>>>>>> 6005c6df8c6b2c4cb36d7a79ab62de2b141d069d
 
 
 @login_required()
